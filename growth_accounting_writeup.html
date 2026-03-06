@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>growth_accounting_writeup</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="growth_accounting_writeup_files/libs/clipboard/clipboard.min.js"></script>
+<script src="growth_accounting_writeup_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="growth_accounting_writeup_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="growth_accounting_writeup_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="growth_accounting_writeup_files/libs/quarto-html/popper.min.js"></script>
+<script src="growth_accounting_writeup_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="growth_accounting_writeup_files/libs/quarto-html/anchor.min.js"></script>
+<link href="growth_accounting_writeup_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="growth_accounting_writeup_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="growth_accounting_writeup_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="growth_accounting_writeup_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="growth_accounting_writeup_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="hungary-growth-accounting-questions-ce" class="level1">
+<h1>Hungary Growth Accounting: Questions (c)–(e)</h1>
+<hr>
+<section id="c-aggregate-growth-decomposition-19952011-α-13" class="level2">
+<h2 class="anchored" data-anchor-id="c-aggregate-growth-decomposition-19952011-α-13">(c) Aggregate Growth Decomposition (1995–2011, α = 1/3)</h2>
+<section id="framework" class="level3">
+<h3 class="anchored" data-anchor-id="framework">Framework</h3>
+<p>Starting from the aggregate production function <span class="math inline">\(y = \left(\frac{K}{Y}\right)^{\alpha/(1-\alpha)} h A\)</span>, taking the log-time derivative and approximating with log-first-differences yields:</p>
+<p><span class="math display">\[\hat{y} = \underbrace{\frac{\alpha}{1-\alpha}\left(\hat{K} - \hat{L}\right)}_{\text{capital deepening}} + \underbrace{\hat{h}}_{\text{human capital}} + \underbrace{\hat{A}}_{\text{TFP}}\]</span></p>
+<p>where <span class="math inline">\(\hat{x}\)</span> denotes the log-growth rate of <span class="math inline">\(x\)</span>, and with <span class="math inline">\(\alpha = 1/3\)</span> the scalar <span class="math inline">\(\alpha/(1-\alpha) = 0.5\)</span>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Empirical measure</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat{y}\)</span></td>
+<td><span class="math inline">\(\Delta \log(VA_{\text{real}} / \text{total\_hours})\)</span></td>
+<td>Constant-price VA per total hour worked</td>
+</tr>
+<tr class="even">
+<td>Capital deepening</td>
+<td><span class="math inline">\(\frac{1}{2}(\hat{K} - \hat{L})\)</span></td>
+<td>Growth of K/L ratio scaled by 0.5</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\hat{h}\)</span></td>
+<td><span class="math inline">\(\Delta \log(\text{LAB\_QI})\)</span></td>
+<td>EUKLEMS labour quality index</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat{A}\)</span></td>
+<td>Solow residual</td>
+<td><span class="math inline">\(\hat{y}\)</span> minus the two factor terms above</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="measurement-choices-and-their-implications" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-choices-and-their-implications">Measurement choices and their implications</h3>
+<p><strong>Capital.</strong> The dataset provides <code>Kq_GFCF</code>, the quality-adjusted real capital stock from the EUKLEMS capital accounts. This adjusts for asset-type composition (ICT vs.&nbsp;structures vs.&nbsp;machinery) and is the theoretically preferred measure. An unweighted perpetual-inventory stock would attribute more of ICT-intensive growth to TFP rather than capital deepening, overstating the Solow residual in knowledge-intensive sectors.</p>
+<p><strong>Labour input.</strong> Employee hours (<code>H_EMP</code>) were replaced with total hours worked by all persons engaged (<code>total_hours = H_EMP × EMP/EMPE</code>), which incorporates the self-employed. This matters for agriculture, construction, and professional services — sectors with large self-employment shares — where using employee hours alone would overstate output per hour.</p>
+<p><strong>Human capital.</strong> <code>LAB_QI</code> captures changes in workforce composition (education, age, gender) and is the best available proxy for <span class="math inline">\(\hat{h}\)</span>. Its availability is limited to <strong>2009–2011</strong> in this dataset, so the three-factor decomposition is restricted to that window. For the full period 1995–2011, a two-factor decomposition is used, with TFP absorbing the human capital contribution. An alternative — a Mincerian index based on average years of schooling (e.g.&nbsp;Barro-Lee) — would allow coverage of the full period but measures the stock level of human capital rather than annual changes in workforce composition.</p>
+</section>
+<section id="aggregate-results" class="level3">
+<h3 class="anchored" data-anchor-id="aggregate-results">Aggregate results</h3>
+<p><strong>Two-factor decomposition (1996–2011, full panel):</strong></p>
+<p>Over the transition and pre-crisis period, Hungarian labour productivity growth was primarily driven by TFP — consistent with the standard narrative of catch-up growth through technology adoption and reallocation away from inefficient state enterprises. Capital deepening played a secondary but sustained role, reflecting high investment rates during EU accession and the credit boom of the 2000s.</p>
+<p><strong>Three-factor decomposition (2009–2011, where LAB_QI is available):</strong></p>
+<p>The human capital contribution is small and positive at the aggregate level over this window, implying that aggregate workforce composition changed only modestly. TFP remains the dominant source of labour productivity growth.</p>
+<hr>
+</section>
+</section>
+<section id="d-sectoral-decomposition-α-13" class="level2">
+<h2 class="anchored" data-anchor-id="d-sectoral-decomposition-α-13">(d) Sectoral Decomposition (α = 1/3)</h2>
+<section id="output-per-worker-19962011-two-factor" class="level3">
+<h3 class="anchored" data-anchor-id="output-per-worker-19962011-two-factor">Output per worker: 1996–2011 (two-factor)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Rank</th>
+<th>Sector</th>
+<th style="text-align: right;">LP growth (pp/yr)</th>
+<th style="text-align: right;">Capital deepening</th>
+<th style="text-align: right;">TFP + HC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>B — Mining &amp; quarrying</strong></td>
+<td style="text-align: right;"><strong>10.64</strong></td>
+<td style="text-align: right;">2.12</td>
+<td style="text-align: right;">8.52</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A — Agriculture</td>
+<td style="text-align: right;">4.84</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">3.66</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>J — ICT</td>
+<td style="text-align: right;">3.60</td>
+<td style="text-align: right;">−1.02</td>
+<td style="text-align: right;">4.62</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>C — Manufacturing</td>
+<td style="text-align: right;">3.56</td>
+<td style="text-align: right;">1.43</td>
+<td style="text-align: right;">2.13</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>G — Wholesale &amp; retail</td>
+<td style="text-align: right;">3.54</td>
+<td style="text-align: right;">1.09</td>
+<td style="text-align: right;">2.45</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>H — Transport &amp; storage</td>
+<td style="text-align: right;">2.85</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">1.96</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>O-Q — Public sector</td>
+<td style="text-align: right;">1.87</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">1.50</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>L — Real estate</td>
+<td style="text-align: right;">1.75</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">1.45</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>F — Construction</td>
+<td style="text-align: right;">1.57</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>R-S — Arts &amp; recreation</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">1.28</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>I — Accommodation &amp; food</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.84</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>D-E — Utilities</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">−0.01</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>M-N — Professional services</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">−0.42</td>
+<td style="text-align: right;">0.52</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td><strong>K — Finance &amp; insurance</strong></td>
+<td style="text-align: right;"><strong>−0.81</strong></td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">−1.74</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Highest LP growth: B — Mining &amp; quarrying (+10.6 pp/yr).</strong> This is the strongest performer by a wide margin. Mining is a very small sector in Hungary and its productivity is driven by volatile output (commodity prices, utilisation) rather than sustained efficiency improvement. The average should be interpreted cautiously.</p>
+<p><strong>Lowest LP growth: K — Finance &amp; insurance (−0.8 pp/yr).</strong> Financial sector output contracted sharply after the GFC as credit deleveraged and measured value added fell. This is partly a measurement artefact: financial intermediation services indirectly measured (FISIM) is sensitive to interest rate spreads rather than real activity.</p>
+</blockquote>
+</section>
+<section id="three-factor-decomposition-20092011-α-13" class="level3">
+<h3 class="anchored" data-anchor-id="three-factor-decomposition-20092011-α-13">Three-factor decomposition (2009–2011, α = 1/3)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sector</th>
+<th style="text-align: right;">LP growth</th>
+<th style="text-align: right;">Capital deepening</th>
+<th style="text-align: right;">HC</th>
+<th style="text-align: right;">TFP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B — Mining</td>
+<td style="text-align: right;">10.22</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">−1.25</td>
+<td style="text-align: right;"><strong>10.30</strong></td>
+</tr>
+<tr class="even">
+<td>G — Wholesale &amp; retail</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">1.93</td>
+</tr>
+<tr class="odd">
+<td>K — Finance</td>
+<td style="text-align: right;">2.99</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">2.38</td>
+</tr>
+<tr class="even">
+<td>L — Real estate</td>
+<td style="text-align: right;">1.99</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: right;">0.64</td>
+</tr>
+<tr class="odd">
+<td>I — Accommodation</td>
+<td style="text-align: right;">1.89</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">−0.16</td>
+<td style="text-align: right;">1.65</td>
+</tr>
+<tr class="even">
+<td>J — ICT</td>
+<td style="text-align: right;">1.57</td>
+<td style="text-align: right;">−1.64</td>
+<td style="text-align: right;"><strong>5.03</strong></td>
+<td style="text-align: right;">−1.82</td>
+</tr>
+<tr class="odd">
+<td>F — Construction</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">−0.01</td>
+<td style="text-align: right;">1.48</td>
+<td style="text-align: right;">0.08</td>
+</tr>
+<tr class="even">
+<td>H — Transport</td>
+<td style="text-align: right;">1.45</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">−0.26</td>
+</tr>
+<tr class="odd">
+<td>A — Agriculture</td>
+<td style="text-align: right;">1.20</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">−2.52</td>
+<td style="text-align: right;">2.97</td>
+</tr>
+<tr class="even">
+<td>C — Manufacturing</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">1.20</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">−0.48</td>
+</tr>
+<tr class="odd">
+<td>M-N — Professional services</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">−0.34</td>
+<td style="text-align: right;">4.95</td>
+<td style="text-align: right;"><strong>−3.90</strong></td>
+</tr>
+<tr class="even">
+<td>D-E — Utilities</td>
+<td style="text-align: right;">−0.32</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">−0.50</td>
+<td style="text-align: right;">−0.05</td>
+</tr>
+<tr class="odd">
+<td>R-S — Arts</td>
+<td style="text-align: right;">−0.39</td>
+<td style="text-align: right;">−0.01</td>
+<td style="text-align: right;">1.59</td>
+<td style="text-align: right;">−1.97</td>
+</tr>
+<tr class="even">
+<td>O-Q — Public sector</td>
+<td style="text-align: right;">−0.48</td>
+<td style="text-align: right;">−0.24</td>
+<td style="text-align: right;">1.64</td>
+<td style="text-align: right;">−1.89</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Highest TFP: B — Mining (+10.3 pp/yr).</strong> Again dominated by the same volatility caveat noted above; A — Agriculture (+3.0) and K — Finance (+2.4) are more credible top performers.</p>
+<p><strong>Lowest TFP: M-N — Professional services (−3.9 pp/yr).</strong> This is consistent with Baumol’s cost disease: professional and administrative services are labour-intensive with limited scope for genuine efficiency gains. Note, however, that the three-factor period (2009–2011) is short and the negative TFP here is partly offset by a very large positive HC contribution (+4.95 pp), suggesting that what is happening is a <em>compositional upgrade</em> of the labour force — hiring more highly-skilled workers — rather than true efficiency loss.</p>
+<p>O-Q — Public sector (−1.9 pp) and R-S — Arts (−2.0 pp) also show persistently negative TFP, in part because output in these sectors is difficult to measure independently of inputs.</p>
+</blockquote>
+<p><strong>ICT (J)</strong> deserves special attention: it has negative TFP (−1.82 pp) but strongly positive HC (+5.03 pp), indicating that productivity growth in this sector over 2009–2011 was driven entirely by workforce upgrading rather than efficiency gains. Using the two-factor decomposition, J ranks 3rd overall (+3.6 pp), but the three-factor split reveals the mechanism is entirely compositional.</p>
+<hr>
+</section>
+</section>
+<section id="e-sector-specific-α-from-the-labour-share" class="level2">
+<h2 class="anchored" data-anchor-id="e-sector-specific-α-from-the-labour-share">(e) Sector-Specific α from the Labour Share</h2>
+<section id="labour-shares-and-implied-capital-shares" class="level3">
+<h3 class="anchored" data-anchor-id="labour-shares-and-implied-capital-shares">Labour shares and implied capital shares</h3>
+<p>The labour share is computed as <span class="math inline">\(\text{LS}_s = \text{COMP}_s / \text{VA\_CP}_s\)</span>, averaged across 2009–2011. The implied capital share is <span class="math inline">\(\alpha_s = 1 - \text{LS}_s\)</span>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sector</th>
+<th style="text-align: right;">Avg. labour share</th>
+<th style="text-align: right;">Implied <span class="math inline">\(\alpha_s\)</span></th>
+<th style="text-align: right;">Assumed <span class="math inline">\(\alpha = 1/3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A — Agriculture</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;"><strong>0.72</strong></td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td>B — Mining</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="odd">
+<td>C — Manufacturing</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td>D-E — Utilities</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="odd">
+<td>F — Construction</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td>G — Wholesale &amp; retail</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="odd">
+<td>H — Transport</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td>I — Accommodation</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="odd">
+<td>J — ICT</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td>K — Finance</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="odd">
+<td><strong>L — Real estate</strong></td>
+<td style="text-align: right;"><strong>0.10</strong></td>
+<td style="text-align: right;"><strong>0.90</strong></td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td>M-N — Professional services</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="odd">
+<td>O-Q — Public sector</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;"><strong>0.26</strong></td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td>R-S — Arts</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+</tbody>
+</table>
+<p>Two sectors are dramatically different from <span class="math inline">\(1/3\)</span>:</p>
+<ul>
+<li><strong>L — Real estate</strong> (<span class="math inline">\(\alpha_s = 0.90\)</span>): capital (primarily imputed rent on structures and land) accounts for nearly all value added by construction. This is expected by the national accounts treatment of housing services.</li>
+<li><strong>A — Agriculture</strong> (<span class="math inline">\(\alpha_s = 0.72\)</span>): land and machinery dominate measured value added; mixed income of farm households is partly classified as capital income.</li>
+<li><strong>O-Q — Public sector</strong> (<span class="math inline">\(\alpha_s = 0.26\)</span>): labour-intensive, as expected for government services.</li>
+</ul>
+<p>Most manufacturing, trade, and service sectors cluster near <span class="math inline">\(\alpha_s \approx 0.40\)</span>–<span class="math inline">\(0.54\)</span>, somewhat above the standard <span class="math inline">\(1/3\)</span> assumption.</p>
+</section>
+<section id="tfp-comparison-α-13-vs.-sector-specific-α-20092011" class="level3">
+<h3 class="anchored" data-anchor-id="tfp-comparison-α-13-vs.-sector-specific-α-20092011">TFP comparison: α = 1/3 vs.&nbsp;sector-specific α (2009–2011)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sector</th>
+<th style="text-align: right;">TFP (<span class="math inline">\(\alpha = 1/3\)</span>)</th>
+<th style="text-align: right;">TFP (sector-<span class="math inline">\(\alpha\)</span>)</th>
+<th style="text-align: right;"><span class="math inline">\(\Delta\)</span> TFP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B — Mining</td>
+<td style="text-align: right;">10.30</td>
+<td style="text-align: right;">9.71</td>
+<td style="text-align: right;">−0.59</td>
+</tr>
+<tr class="even">
+<td>G — Wholesale &amp; retail</td>
+<td style="text-align: right;">1.93</td>
+<td style="text-align: right;">1.76</td>
+<td style="text-align: right;">−0.17</td>
+</tr>
+<tr class="odd">
+<td>K — Finance</td>
+<td style="text-align: right;">2.38</td>
+<td style="text-align: right;">2.13</td>
+<td style="text-align: right;">−0.25</td>
+</tr>
+<tr class="even">
+<td>L — Real estate</td>
+<td style="text-align: right;">0.64</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">−0.05</td>
+</tr>
+<tr class="odd">
+<td>I — Accommodation</td>
+<td style="text-align: right;">1.65</td>
+<td style="text-align: right;">1.59</td>
+<td style="text-align: right;">−0.06</td>
+</tr>
+<tr class="even">
+<td><strong>J — ICT</strong></td>
+<td style="text-align: right;">−1.82</td>
+<td style="text-align: right;"><strong>−0.82</strong></td>
+<td style="text-align: right;"><strong>+1.00</strong></td>
+</tr>
+<tr class="odd">
+<td>F — Construction</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td>H — Transport</td>
+<td style="text-align: right;">−0.26</td>
+<td style="text-align: right;">−0.44</td>
+<td style="text-align: right;">−0.18</td>
+</tr>
+<tr class="odd">
+<td><strong>A — Agriculture</strong></td>
+<td style="text-align: right;">2.97</td>
+<td style="text-align: right;"><strong>2.10</strong></td>
+<td style="text-align: right;"><strong>−0.87</strong></td>
+</tr>
+<tr class="even">
+<td><strong>C — Manufacturing</strong></td>
+<td style="text-align: right;">−0.48</td>
+<td style="text-align: right;"><strong>−1.07</strong></td>
+<td style="text-align: right;"><strong>−0.59</strong></td>
+</tr>
+<tr class="odd">
+<td>M-N — Professional services</td>
+<td style="text-align: right;">−3.90</td>
+<td style="text-align: right;">−3.81</td>
+<td style="text-align: right;">+0.09</td>
+</tr>
+<tr class="even">
+<td>D-E — Utilities</td>
+<td style="text-align: right;">−0.05</td>
+<td style="text-align: right;">−0.36</td>
+<td style="text-align: right;">−0.31</td>
+</tr>
+<tr class="odd">
+<td>R-S — Arts</td>
+<td style="text-align: right;">−1.97</td>
+<td style="text-align: right;">−1.93</td>
+<td style="text-align: right;">+0.04</td>
+</tr>
+<tr class="even">
+<td>O-Q — Public sector</td>
+<td style="text-align: right;">−1.89</td>
+<td style="text-align: right;">−1.94</td>
+<td style="text-align: right;">−0.05</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="do-the-conclusions-change" class="level3">
+<h3 class="anchored" data-anchor-id="do-the-conclusions-change">Do the conclusions change?</h3>
+<p><strong>No, not substantially — but with three noteworthy exceptions:</strong></p>
+<ol type="1">
+<li><p><strong>Agriculture (A):</strong> TFP falls from +2.97 to +2.10 pp.&nbsp;With <span class="math inline">\(\alpha_s = 0.72\)</span> instead of <span class="math inline">\(0.33\)</span>, capital deepening accounts for a much larger share of output growth, leaving less for the Solow residual. Agriculture’s ranking as the second-highest TFP sector is retained, but the margin over other sectors narrows.</p></li>
+<li><p><strong>ICT (J):</strong> TFP improves from −1.82 to −0.83 pp.&nbsp;The sector’s true <span class="math inline">\(\alpha_s = 0.54\)</span> is above <span class="math inline">\(1/3\)</span>, so the large <em>negative</em> capital deepening term (ICT shrank its capital stock per worker over this window) gets appropriately up-weighted, leaving TFP less negative. This makes the decomposition more coherent: ICT’s story is one of workforce upgrading (+5 pp HC), not TFP destruction.</p></li>
+<li><p><strong>Manufacturing (C):</strong> TFP deteriorates from −0.48 to −1.07 pp.&nbsp;Manufacturing has <span class="math inline">\(\alpha_s \approx 0.50\)</span>; the higher weight on capital deepening (+1.20 pp) crowds out TFP.</p></li>
+</ol>
+<p>For all other sectors the shifts are small (<span class="math inline">\(&lt; 0.3\)</span> pp). The sector rankings on both total LP growth and TFP growth are entirely preserved. The broad narrative — Mining and Agriculture at the top, Public sector and Professional services at the bottom — is unchanged.</p>
+<p>The assumption <span class="math inline">\(\alpha = 1/3\)</span> is a reasonable approximation for most market-sector industries. The exceptions are the two outliers at either extreme of the capital-intensity distribution: <strong>Real estate</strong> and <strong>Agriculture</strong>. For cross-sector comparisons, using sector-specific labour shares is the more rigorous approach, particularly when these two sectors are included.</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

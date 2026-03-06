@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>growth_accounting</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="growth_accounting_files/libs/clipboard/clipboard.min.js"></script>
+<script src="growth_accounting_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="growth_accounting_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="growth_accounting_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="growth_accounting_files/libs/quarto-html/popper.min.js"></script>
+<script src="growth_accounting_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="growth_accounting_files/libs/quarto-html/anchor.min.js"></script>
+<link href="growth_accounting_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="growth_accounting_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="growth_accounting_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="growth_accounting_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="growth_accounting_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<p>Macroeconomics I: Lecture 3</p>
+<p>Instructor: Alessandro Ferrari Date: January 2026 Institution: UPF, CREI, BSE &amp; CEPR</p>
+<p>Growth Accounting</p>
+<p>99% of modern macroeconomics is “done” using theory and data</p>
+<p>Models may be useful for:</p>
+<p>Getting intuitions/insights</p>
+<p>Measuring stuff</p>
+<p>Growth accounting uses the structure of standard growth models to measure the sources of growth.</p>
+<p>Growth Accounting</p>
+<p>Quantify the role of each production factor in the growth experience of a given country or region.</p>
+<p>Take:</p>
+<p><span class="math display">\[Y_{t}=F(K_{t},B_{t}L_{t})\]</span></p>
+<p>where <span class="math inline">\(Y_{t}\)</span>, <span class="math inline">\(K_{t}\)</span>, and <span class="math inline">\(L_{t}\)</span> are output, capital, and labor per capita.</p>
+<p>Given a growth rate of output per worker, how much is due to the increase in capital, labor, and productivity?</p>
+<p>Rewrite the production function as</p>
+<p><span class="math display">\[Y_{t}=A_{t}F(K_{t},L_{t})\]</span></p>
+<p>where <span class="math inline">\(A_{t}\)</span> is the total factor productivity (TFP).</p>
+<p>Growth Accounting</p>
+<p>Take logs and time derivatives:</p>
+<p><span class="math display">\[\frac{\dot{Y}}{Y}=\frac{\dot{A}}{A}+\left(\frac{F_{K}K}{F}\right)\frac{\dot{K}}{K}+\left(\frac{F_{L}L}{F}\right)\frac{\dot{L}}{L} \Rightarrow \gamma_{Y}=\gamma_{A}+\alpha_{t}\gamma_{K}+(1-\alpha_{t})\gamma_{L}\]</span></p>
+<p>where <span class="math inline">\(\alpha_{t}\)</span> is the capital share.</p>
+<p>Everything in this equation is observable, except for <span class="math inline">\(\gamma_{A}\)</span>.</p>
+<p>But we can compute it as a residual (indeed, it is the Solow residual):</p>
+<p><span class="math display">\[\gamma_{A}=\gamma_{Y}-\alpha_{t}\gamma_{K}-(1-\alpha_{t})\gamma_{L}\]</span></p>
+<p>Growth Accounting</p>
+<p>What goes into <span class="math inline">\(\gamma_{A}\)</span>? Everything except for measured capital and labor.</p>
+<p>Technology</p>
+<p>Misallocation (market efficiency, government regulation, cronyism, etc.)</p>
+<p>Mismeasurement of capital and labor</p>
+<p>Growth Accounting</p>
+<p>Initial accounting exercises gave a very high share of growth to TFP, in the order of 70%.</p>
+<p>This was the measure of our ignorance.</p>
+<p>Recent measurements reduce the importance of TFP to <span class="math inline">\(1/3 - 1/2\)</span>.</p>
+<p>Problem: poor measurement of the quality of inputs.</p>
+<p>Labor quality has increased.</p>
+<p>The labor force’s education level has been increasing.</p>
+<p>A way to account for this is to weigh every person’s hours by the relative wage of her education category.</p>
+<p>Capital quality has increased even more.</p>
+<p>Relative price of capital equipment has declined in the last decades.</p>
+<p>A computer today is much faster than 30 years ago.</p>
+<p>Need to measure capital in efficiency units, not in dollars.</p>
+<p>Growth Accounting</p>
+<p>The stock of capital is not easy to measure.</p>
+<p>One approach is to build it with the perpetual-inventory method. It basically requires applying the law of motion:</p>
+<p><span class="math display">\[K_{t+1}=(1-\delta)K_{t}+I_{t}\]</span></p>
+<p>We have good measures of <span class="math inline">\(I_{t}\)</span> in the national accounts. <span class="math inline">\(\delta\)</span> is easy to estimate. Then, we just need an initial estimate of <span class="math inline">\(K_{0}\)</span>. This is the most complicated part. However, if we have a series for <span class="math inline">\(I_{t}\)</span> long enough, the effects of <span class="math inline">\(K_{0}\)</span> vanish.</p>
+<p>Growth Accounting</p>
+<p>“Recent” measurements reduce the importance of TFP.</p>
+<p>Still, it accounts for more than <span class="math inline">\(1/3\)</span> and in some countries by <span class="math inline">\(1/2\)</span> of output growth.</p>
+<p>Country</p>
+<p><span class="math inline">\(\gamma_Y\)</span></p>
+<p><span class="math inline">\(\alpha\frac{\gamma_{K}}{\gamma_{Y}}\)</span></p>
+<p><span class="math inline">\((1-\alpha) \frac{\gamma_{L}}{\gamma_{Y}}\)</span></p>
+<p><span class="math inline">\(\frac{\gamma_A}{\gamma_Y}\)</span></p>
+<p>1947-1973</p>
+<p>US</p>
+<p>4.02%</p>
+<p>42.7%</p>
+<p>23.7%</p>
+<p>33.6%</p>
+<p>UK</p>
+<p>3.73%</p>
+<p>47.2%</p>
+<p>0.9%</p>
+<p>51.9%</p>
+<p>Fr</p>
+<p>5.42%</p>
+<p>41.5%</p>
+<p>3.9%</p>
+<p>54.5%</p>
+<p>Ger</p>
+<p>6.61%</p>
+<p>40.6%</p>
+<p>2.8%</p>
+<p>56.6%</p>
+<p>1960-1990</p>
+<p>US</p>
+<p>3.10%</p>
+<p>45.2%</p>
+<p>41.5%</p>
+<p>13.2%</p>
+<p>UK</p>
+<p>2.49%</p>
+<p>52.3%</p>
+<p>-4.2%</p>
+<p>51.9%</p>
+<p>Fr</p>
+<p>3.50%</p>
+<p>58.1%</p>
+<p>0.5%</p>
+<p>41.4%</p>
+<p>Ger</p>
+<p>3.20%</p>
+<p>58.7%</p>
+<p>-8.1%</p>
+<p>49.4%</p>
+<p>Growth Accounting</p>
+<p>This is useful, but it does not imply any causality.</p>
+<p>Remember that the Solow and Ramsey models state that in the BGP all growth in capital per capita is also due to technology.</p>
+<p>Alternative but similar framework:</p>
+<p><span class="math display">\[Y_{t}=K_{t}^{\alpha}(B_{t}L_{t})^{1-\alpha} \Rightarrow \frac{Y_{t}}{N_{t}}=B_{t}\frac{L_{t}}{N_{t}}\left(\frac{K_{t}}{Y_{t}}\right)^{\frac{\alpha}{1-\alpha}}\]</span></p>
+<p>Hence, the growth of output per capita <span class="math inline">\(Y_{t}/N_{t}\)</span> is decomposed in:</p>
+<p>growth of Solow residual</p>
+<p>growth of labor units per capita</p>
+<p>capital deepening: the increase in the capital-to-income ratio</p>
+<p>Growth Accounting</p>
+<p>Results:</p>
+<p>Period</p>
+<p><span class="math inline">\(Y/N\)</span></p>
+<p><span class="math inline">\(B\)</span></p>
+<p><span class="math inline">\(L/N\)</span></p>
+<p><span class="math inline">\(K/Y\)</span></p>
+<p>1948-2013</p>
+<p>2.5</p>
+<p>2.0</p>
+<p>0.3</p>
+<p>0.1</p>
+<p>1948-1973</p>
+<p>3.3</p>
+<p>3.2</p>
+<p>0.3</p>
+<p>-0.2</p>
+<p>1973-1995</p>
+<p>1.6</p>
+<p>0.8</p>
+<p>0.4</p>
+<p>0.4</p>
+<p>1995-2007</p>
+<p>2.8</p>
+<p>2.2</p>
+<p>0.3</p>
+<p>0.2</p>
+<p>2007-2013</p>
+<p>1.7</p>
+<p>1.1</p>
+<p>0.5</p>
+<p>0.1</p>
+<p>US data. Source: Jones (2015)</p>
+<p>Capital deepening of little importance: US close to BGP.</p>
+<p>Large importance of Solow residual.</p>
+<p>We observe a productivity slowdown in the 70’s and 80’s, also from 2007 on…</p>
+<p>Growth Accounting</p>
+<p>What we have used so far is the so-called primal approach to growth accounting.</p>
+<p>The alternative dual approach starts from the accounting equation (absent profits):</p>
+<p><span class="math display">\[Y_{t}=w_{t}L_{t}+r_{t}K_{t}\]</span></p>
+<p>Taking log derivatives wrt time:</p>
+<p><span class="math display">\[\dot{Y}/Y=\alpha_{K}(\dot{R}/R+\dot{K}/K)+\alpha_{L}(\dot{w}/w+\dot{L}/L)\]</span></p>
+<p>Which implies that we can rewrite TFP growth as:</p>
+<p><span class="math display">\[\gamma_{A}=\alpha_{K}\dot{R}/R+\alpha_{L}\dot{w}/w\]</span></p>
+<p>Growth Accounting</p>
+<p>This approach relies on national accounting identities without assumptions on social marginal products.</p>
+<p>Should in principle coincide with the primal approach, but in practice, they are often not (Hsieh, 2002).</p>
+<p>Country</p>
+<p>Primal</p>
+<p>Dual</p>
+<p>Hong Kong (’66-’91)</p>
+<p>2.3%</p>
+<p>2.7%</p>
+<p>Singapore (’72-’90)</p>
+<p>-0.7%</p>
+<p>2.2%</p>
+<p>South Korea (’66-’90)</p>
+<p>1.7%</p>
+<p>1.5%</p>
+<p>Taiwan (’66-’90)</p>
+<p>2.1%</p>
+<p>3.7%</p>
+<p>A few observations</p>
+<p>Consider the basic growth accounting equation:</p>
+<p><span class="math display">\[\frac{\partial \log Y}{\partial t}=\frac{\partial \log F(x)}{\partial t}=\sum_{x}\frac{\partial \log F}{\partial \log x}\frac{\partial \log x}{\partial t}\]</span></p>
+<p>We argued before that we can use measured income shares for the production function elasticity. Why can we do that?</p>
+<p>Consider an optimizing firm:</p>
+<p><span class="math display">\[\max_{x}\pi(x)=pF(x)-\sum_{x}w_{x}x\]</span></p>
+<p>A few observations</p>
+<p>The profit maximization problem has FOCs of the type:</p>
+<p><span class="math display">\[F_{x}p=w_{x}\]</span></p>
+<p>which we can rewrite as:</p>
+<p><span class="math display">\[\frac{F_{x}x}{Y}=\frac{w_{x}x}{pY}\]</span></p>
+<p>The LHS is the elasticity we would like to measure, the RHS is the factor share.</p>
+<p>What if the firm has market power?</p>
+<p>A few observations - Problem 1</p>
+<p>The profit maximization is:</p>
+<p><span class="math display">\[\max_{x}\pi(x)=p(x)F(x)-\sum_{x}w_{x}x\]</span></p>
+<p>which implies:</p>
+<p><span class="math display">\[p^{\prime}F_{x}F+pF_{x}=w_{x}\]</span></p>
+<p>Which we can manipulate to:</p>
+<p><span class="math display">\[\frac{\epsilon_{D}-1}{\epsilon_{D}}\frac{F_{x}x}{Y}=\frac{w_{x}x}{pY}\]</span></p>
+<p>With <span class="math inline">\(\epsilon_{D}\)</span> being the elasticity of demand.</p>
+<p>A few observations - Problem 1</p>
+<p>So we cannot simply take the measured factor share.</p>
+<p>Note, however, that, by definition:</p>
+<p><span class="math display">\[\mu=\frac{\epsilon_{D}}{\epsilon_{D}-1}\]</span></p>
+<p>and under CRS of the production function:</p>
+<p><span class="math display">\[C(Y)=\frac{pY}{\mu}\]</span></p>
+<p>Hence we can recover:</p>
+<p><span class="math display">\[\frac{F_{x}x}{Y}=\frac{w_{x}x}{C}\]</span></p>
+<p>So the elasticity is the cost share whenever firms have profits.</p>
+<p>A few observations - Problem 2</p>
+<p>Note another complication: suppose that some costs are not variable:</p>
+<p><span class="math display">\[\max_{x}\pi(x)=pF(x)-\sum_{x}w_{x}x-w_{x}\Gamma\]</span></p>
+<p>Suppose that <span class="math inline">\(\Gamma\)</span> is paid by hiring units of input <span class="math inline">\(x\)</span> at the price <span class="math inline">\(w_{x}\)</span>.</p>
+<p>The optimization problem from before still holds, and we obtain:</p>
+<p><span class="math display">\[\frac{F_{x}x}{Y}=\frac{w_{x}x}{pY}\]</span></p>
+<p>But the RHS is not the <span class="math inline">\(x\)</span> factor share, since that is given by:</p>
+<p><span class="math display">\[\frac{w_{x}(x+\Gamma)}{pY}\]</span></p>
+<p>A few observations - Problem 2</p>
+<p>Problems 1 and 2 have a similar root cause.</p>
+<p>Going from factor share to elasticities requires that firms:</p>
+<p>equate REVENUE marginal products to input prices (true under perfect competition on both output AND factor markets)</p>
+<p>variable costs are the only costs, so when the firms make a margin calculation, we can immediately go to the full factor share</p>
+<p>Fixing these requires strict assumptions on firm behaviour.</p>
+<p>A few observations - Problem 3</p>
+<p>Note yet another thing: so far, we have been jumping seamlessly from firm-level to aggregates. This is not assumption-free.</p>
+<p>Underlying is an assumption on “no externalities”.</p>
+<p>Namely that firms private marginal returns are equal to the social marginal returns.</p>
+<p>Suppose there is a positive externality, then firms equate MC to private MP, but in the aggregates, Social MP is higher.</p>
+<p>A few observations</p>
+<p>More problems in economies with:</p>
+<p>taxes</p>
+<p>multiple sector/inputs</p>
+<p>quality upgrading</p>
+<p>endogenous technological progress</p>
+<p>Nonetheless, we persevere (for good reasons).</p>
+<p>Can a country grow without improving its productivity?</p>
+<p>[Chart: Growth Accounting for Spain (1995-2007) - showing Output growing, with Capital and Labor growing significantly faster than TFP, which slightly declines over the period]</p>
+<p>Development Accounting</p>
+<p>Similar exercise, but comparing a cross-section of countries at a given point in time:</p>
+<p><span class="math display">\[\log Y_{i}=\log A_{i}+\alpha \log K_{i}+(1-\alpha)\log L_{i}\]</span></p>
+<p>Caselli (2005) claims that TFP differences account for more than <span class="math inline">\(1/2\)</span> of variation in income per capita between countries.</p>
+<p>sample</p>
+<p>obs</p>
+<p><span class="math inline">\(y_{90}/y_{10}\)</span></p>
+<p>the xx</p>
+<p>Whole sample</p>
+<p>105</p>
+<p>24.8</p>
+<p>61.5%</p>
+<p>OECD</p>
+<p>24</p>
+<p>1.7</p>
+<p>39.4%</p>
+<p>Non OECD</p>
+<p>81</p>
+<p>14.7</p>
+<p>64.4%</p>
+<p>Improving capital quality measures and allowing for non Cobb-Douglas production function are important to reduce these numbers.</p>
+<p>Where are the productivity differences coming from?</p>
+<p>Hall and Jones (1999, QJE)</p>
+<p>income/worker in the USA = <span class="math inline">\(35 \times\)</span> income/worker in Niger</p>
+<p>Hall and Jones carry out one of the “first” development accounting exercises.</p>
+<p>Goal: understanding what part of these differences is due to:</p>
+<p>Efficiency in the use of factors</p>
+<p>Amount of factors</p>
+<p>Conceptually:</p>
+<p><span class="math display">\[\text{Income} = F(\text{Factors, Efficiency})\]</span></p>
+<p>Development accounting</p>
+<p>Let’s assume that the production function for a country <span class="math inline">\(i\)</span> is given by:</p>
+<p><span class="math display">\[Y_{i}=K_{i}^{\alpha}(A_{i}H_{i})^{1-\alpha}\]</span></p>
+<p><span class="math inline">\(K_{i}\)</span>: stock of physical capital</p>
+<p><span class="math inline">\(H_{i}\)</span>: human capital adjusted labor factor</p>
+<p><span class="math inline">\(A_{i}\)</span>: labor productivity</p>
+<p><span class="math display">\[H_{i}=e^{\phi(E_{i})}L_{i}\]</span></p>
+<p><span class="math inline">\(E_{i}\)</span>: years of schooling</p>
+<p>Development accounting</p>
+<p>We want to write the production function in terms of output per worker <span class="math inline">\(y\equiv\frac{Y}{L}\)</span>.</p>
+<p>Rewriting the production function:</p>
+<p><span class="math display">\[y_{i}=\left(\frac{K_{i}}{Y_{i}}\right)^{\alpha/(1-\alpha)}h_{i}A_{i}\]</span></p>
+<p><span class="math inline">\(h_{i}\equiv\frac{H_i}{L_i}\)</span></p>
+<p><span class="math inline">\(\frac{K_{i}}{Y_{i}}\)</span> : capital-output ratio</p>
+<p>This expression allows us to decompose differences in output per worker into:</p>
+<p>capital-output ratio</p>
+<p>human capital</p>
+<p>productivity</p>
+<p>Development accounting</p>
+<p>The Penn World Tables (PWT) is one of the intensively used datasets in growth accounting (especially during the 90s and early 2000s).</p>
+<p>Other datasets used nowadays: World development indicators, EU-KLEMS.</p>
+<p>Hall and Jones (1999) use Penn World Tables (PWT) 5.6.</p>
+<p>They just released version 10.01.</p>
+<p>HJ use data on output (GDP), labor, educational attainment, and investment for the year 1988.</p>
+<p>Developing accounting</p>
+<p>Remember that we want a data counterpart for:</p>
+<p><span class="math display">\[h_{i}=e^{\phi(E)}\]</span></p>
+<p>Barro and Lee provide relatively high-quality data for many countries-years.</p>
+<p>HJ use the 1985 version.</p>
+<p>These data tell us, among other things, the average number of years of schooling in a given country.</p>
+<p>Development accounting</p>
+<p>To construct <span class="math inline">\(\phi(E)\)</span> we use Barro and Lee data + information on the returns of education. Using schooling <span class="math inline">\(s\)</span>.</p>
+<p>Then, for the returns, we use:</p>
+<p>for the first 4 years: 13.4%</p>
+<p>for the years 4-8: 10.1%</p>
+<p>for the year 9 onwards: 6.8%</p>
+<p>Specifically:</p>
+<p>If <span class="math inline">\(s\le4\)</span>: <span class="math inline">\(\phi(s)=0.134\times s\)</span></p>
+<p>If <span class="math inline">\(4&lt;s\le8\)</span>: <span class="math inline">\(\phi(s)=0.134\times 4+0.101\times(s-4)\)</span></p>
+<p>If <span class="math inline">\(8&lt;s\)</span>: <span class="math inline">\(\phi(s)=0.134\times 4+0.101\times 4+0.068\times(s-8)\)</span></p>
+<p>Development accounting</p>
+<p>Remember that we want a measure for <span class="math inline">\(\frac{K_{i}}{Y_{i}}\)</span>.</p>
+<p><span class="math inline">\(Y_{i}\)</span> is simply GDP - good data.</p>
+<p>However, there is usually no data for <span class="math inline">\(K_{i}\)</span>.</p>
+<p>We have to construct series of <span class="math inline">\(K_{i}\)</span> using the “perpetual inventory method”:</p>
+<p><span class="math display">\[K_{t}=I_{t}+(1-\delta)K_{t-1}\]</span></p>
+<p><span class="math inline">\(I_{t}\)</span> is investment, which can be easily measured in the data.</p>
+<p>We fix <span class="math inline">\(\delta\)</span> as the depreciation rate <span class="math inline">\((=0.06)\)</span>.</p>
+<p><span class="math display">\[K_{0}=\frac{I_{0}}{g+\delta}\]</span></p>
+<p>Development accounting</p>
+<p>We measure <span class="math inline">\(A_{i}\)</span> as a residual. Very common procedure in the misallocation literature…</p>
+<p>Once we have data for the rest of the variables, we compute for each country:</p>
+<p><span class="math display">\[A_{i}=\frac{y_{i}}{\left(\frac{K_{i}}{Y_{i}}\right)^{\alpha/(1-\alpha)}h_{i}}\]</span></p>
+<p>We impute to <span class="math inline">\(A_{i}\)</span> everything that our model cannot explain.</p>
+<p>Caselli (2005): “…the measure of our ignorance”.</p>
+<p>We use <span class="math inline">\(\alpha=1/3\)</span> because that’s approx. the capital share (with all the caveats from before).</p>
+<p>Productivity and Output per Worker</p>
+<p>(Figure I from Hall and Jones 1999)</p>
+<p>[Chart: Scatter plot showing Harrod-Neutral Productivity (Y-axis) vs Output per Worker (X-axis, log scale). Shows a strong positive correlation (<span class="math inline">\(R^2 = 0.79\)</span>, Coeff = 0.600)]</p>
+<p>Development accounting</p>
+<p>TABLE I: PRODUCTIVITY CALCULATIONS: RATIOS TO U.S. VALUES</p>
+<p>Country</p>
+<p><span class="math inline">\(Y/L\)</span></p>
+<p><span class="math inline">\((K/Y)^{\alpha/(1-\alpha)}\)</span></p>
+<p><span class="math inline">\(H/L\)</span></p>
+<p><span class="math inline">\(A\)</span></p>
+<p>United States</p>
+<p>1.000</p>
+<p>1.000</p>
+<p>1.000</p>
+<p>1.000</p>
+<p>Canada</p>
+<p>0.941</p>
+<p>1.002</p>
+<p>0.908</p>
+<p>1.034</p>
+<p>Italy</p>
+<p>0.834</p>
+<p>1.063</p>
+<p>0.650</p>
+<p>1.207</p>
+<p>West Germany</p>
+<p>0.818</p>
+<p>1.118</p>
+<p>0.802</p>
+<p>0.912</p>
+<p>France</p>
+<p>0.818</p>
+<p>1.091</p>
+<p>0.666</p>
+<p>1.126</p>
+<p>United Kingdom</p>
+<p>0.727</p>
+<p>0.891</p>
+<p>0.808</p>
+<p>1.011</p>
+<p>Hong Kong</p>
+<p>0.608</p>
+<p>0.741</p>
+<p>0.735</p>
+<p>1.115</p>
+<p>Singapore</p>
+<p>0.606</p>
+<p>1.031</p>
+<p>0.545</p>
+<p>1.078</p>
+<p>Japan</p>
+<p>0.587</p>
+<p>1.119</p>
+<p>0.797</p>
+<p>0.658</p>
+<p>Mexico</p>
+<p>0.433</p>
+<p>0.868</p>
+<p>0.538</p>
+<p>0.926</p>
+<p>Argentina</p>
+<p>0.418</p>
+<p>0.953</p>
+<p>0.676</p>
+<p>0.648</p>
+<p>U.S.S.R.</p>
+<p>0.417</p>
+<p>1.231</p>
+<p>0.724</p>
+<p>0.468</p>
+<p>India</p>
+<p>0.086</p>
+<p>0.709</p>
+<p>0.454</p>
+<p>0.267</p>
+<p>China</p>
+<p>0.060</p>
+<p>0.891</p>
+<p>0.632</p>
+<p>0.106</p>
+<p>Kenya</p>
+<p>0.056</p>
+<p>0.747</p>
+<p>0.457</p>
+<p>0.165</p>
+<p>Zaire</p>
+<p>0.033</p>
+<p>0.499</p>
+<p>0.408</p>
+<p>0.160</p>
+<p>Average, 127 countries:</p>
+<p>0.296</p>
+<p>0.853</p>
+<p>0.565</p>
+<p>0.516</p>
+<p>Standard deviation:</p>
+<p>0.268</p>
+<p>0.234</p>
+<p>0.168</p>
+<p>0.325</p>
+<p>Correlation with <span class="math inline">\(Y/L\)</span> (logs):</p>
+<p>1.000</p>
+<p>0.624</p>
+<p>0.798</p>
+<p>0.889</p>
+<p>Correlation with A (logs):</p>
+<p>0.889</p>
+<p>0.248</p>
+<p>0.522</p>
+<p>1.000</p>
+<p>Development accounting</p>
+<p>Most of the income differences come from differences in <span class="math inline">\(A_{i}\)</span>.</p>
+<p><span class="math display">\[y_{\text{China}}=0.06\times y_{\text{USA}}\]</span></p>
+<p>If China had <span class="math inline">\(A_{\text{USA}}\)</span>:</p>
+<p><span class="math display">\[y_{\text{China}}=0.50\times y_{\text{USA}}\]</span></p>
+<p><span class="math display">\[y_{\text{top } 5}=31.7\times y_{\text{bottom } 5}\]</span></p>
+<p>Decomposing this difference…</p>
+<p><span class="math display">\[y_{\text{top } 5}=\frac{1.8}{(K/Y)^{\alpha/(1-\alpha)}}\times\frac{2.2}{h}\times\frac{8.3}{A}\times y_{\text{bottom } 5}\]</span></p>
+<p>An additional exercise: What is behind <span class="math inline">\(A_{i}\)</span>?</p>
+<p>Can we relate <span class="math inline">\(A_{i}\)</span> with any observable?</p>
+<p>Hypothesis: Better “Social infrastructure” (institutions) <span class="math inline">\(\Rightarrow A_{i}\uparrow \Rightarrow y_{i}\uparrow\)</span></p>
+<p>Formally:</p>
+<p><span class="math display">\[\log y_{i}=\gamma+\beta S_{i}+\epsilon_{i}\]</span></p>
+<p>If <span class="math inline">\(S\)</span> were exogenous, we could run an OLS to estimate the effect of <span class="math inline">\(S\)</span> on <span class="math inline">\(y_{i}\)</span>.</p>
+<p>Problem: reverse causality.</p>
+<p><span class="math display">\[S_{i}=\mu+\sigma \log y_{i}+X_{i}\theta+\eta_{i}\]</span></p>
+<p>Higher income allows countries to improve institutions.</p>
+<p>An additional exercise: What is behind <span class="math inline">\(A_{i}\)</span>?</p>
+<p>Solution by HJ: Instrumental variables.</p>
+<p>We need to find variables that:</p>
+<p>influence the quality of countries’ institutions</p>
+<p>do not affect current levels of <span class="math inline">\(y_{i}\)</span> through other channels</p>
+<p>Hall and Jones (1999) propose:</p>
+<p>Distance from the equator</p>
+<p>Percentage of the local population that speaks Western languages</p>
+<p>Predicted trade share (Frankel, Romer (1996))</p>
+<p>“…Finally, we also use as an instrument the variable constructed by Frankel and Romer (1996): the (log) of predicted share of an economy, based on a gravity model of international trade that only uses a country’s population and geographical features.”</p>
+<p>An additional exercise: What is behind <span class="math inline">\(A_{i}\)</span>?</p>
+<p>How do we measure <span class="math inline">\(S\)</span> in the data?</p>
+<p>HJ use “Government antidiversion policies (GADP)” index.</p>
+<p>It measures the role of governments in protecting:</p>
+<p>Law and order</p>
+<p>Quality of bureaucracy</p>
+<p>Laws against corruption</p>
+<p>Laws against expropriation risk</p>
+<p>Contract enforcement</p>
+<p>Social Infrastructure and Output per Worker</p>
+<p>(Figure II from Hall and Jones 1999)</p>
+<p>[Chart: Scatter plot mapping Observed Index of Social Infrastructure (X-axis) against Y/L (Y-axis, log scale). Shows a clear positive trend where better social infrastructure correlates with higher output per worker]</p>
+<p>An additional exercise: What is behind <span class="math inline">\(A_{i}\)</span>?</p>
+<p>TABLE II: BASIC RESULTS FOR OUTPUT PER WORKER</p>
+<p><span class="math display">\[\log Y/L=\alpha+\beta\tilde{S}+\tilde{\epsilon}\]</span></p>
+<p>Specification</p>
+<p>Social infrastructure</p>
+<p>OverID test p-value test result</p>
+<p>Coeff test p-value test result</p>
+<p><span class="math inline">\(\hat{\sigma}_{\tilde{\epsilon}}\)</span></p>
+<ol type="1">
+<li>Main specification</li>
+</ol>
+<p>5.1432 (.508)</p>
+<p>.256 Accept</p>
+<p>.812 Accept</p>
+<p>.840</p>
+<ol start="2" type="1">
+<li>Instruments: Distance, Frankel-Romer</li>
+</ol>
+<p>4.998 (.567)</p>
+<p>.208 Accept</p>
+<p>.155 Accept</p>
+<p>.821</p>
+<ol start="3" type="1">
+<li>No imputed data (79 countries)</li>
+</ol>
+<p>5.323 (.607)</p>
+<p>.243 Accept</p>
+<p>.905 Accept</p>
+<p>.889</p>
+<ol start="4" type="1">
+<li>OLS</li>
+</ol>
+<p>3.289 (.212)</p>
+<ul>
+<li></li>
+</ul>
+<p>.002 Reject</p>
+<p>.700</p>
+<p>An additional exercise: What is behind <span class="math inline">\(A_{i}\)</span>?</p>
+<p>TABLE IV: RESULTS FOR <span class="math inline">\(\log K/Y\)</span>, <span class="math inline">\(\log H/L\)</span>, and <span class="math inline">\(\log A\)</span></p>
+<p><span class="math display">\[\text{Component} =\alpha+\beta\tilde{S}+\tilde{\epsilon}\]</span></p>
+<p>Dependent variable</p>
+<p><span class="math inline">\(\frac{\alpha}{1-\alpha}\log K/Y\)</span></p>
+<p><span class="math inline">\(\log H/L\)</span></p>
+<p><span class="math inline">\(\log A\)</span></p>
+<p>Social infrastructure</p>
+<p>1.052 (.164)</p>
+<p>1.343 (.171)</p>
+<p>2.746 (.336)</p>
+<p>OverID test (p)</p>
+<p>.784</p>
+<p>.034</p>
+<p>.151</p>
+<p>Test result</p>
+<p>Accept</p>
+<p>Reject</p>
+<p>Accept</p>
+<p><span class="math inline">\(\hat{\sigma}_{\tilde{\epsilon}}\)</span></p>
+<p>.310</p>
+<p>.243</p>
+<p>.596</p>
+<p><span class="math inline">\(\hat{\sigma}_{Depvar}\)</span></p>
+<p>.320</p>
+<p>.290</p>
+<p>.727</p>
+<p>Developing accounting</p>
+<p>Huge income differences across countries.</p>
+<p>Most of these differences are accounted for by differences in TFP.</p>
+<p>What is the source of these differences in TFP?</p>
+<p>Have we diminished “the measure of our ignorance” in recent years?</p>
+<p>Summary</p>
+<p>Growth/Development Accounting is a useful tool.</p>
+<p>IMPORTANT: but it is not a way to investigate the causes of growth and development.</p>
+<p>It is, as the name says, accounting.</p>
+<p>To see this, recall our earlier result under Cobb-Douglas and labor-augmenting technological progress at rate <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[\Delta \log Y=\alpha\Delta \log K+(1-\alpha)x\]</span></p>
+<p>Summary</p>
+<p>By growth accounting, you would conclude that the TFP growth is <span class="math inline">\(\hat{\gamma}_{A}=(1-\alpha)x\)</span>.</p>
+<p>You would also attribute <span class="math inline">\(\alpha\)</span> of the observed growth to capital-deepening.</p>
+<p>This would be an incorrect causal statement since without <span class="math inline">\(x\)</span> no growth would occur <span class="math inline">\(\Rightarrow\)</span> need to correct for the indirect growth contribution of <span class="math inline">\(x\)</span> through endogenous factor accumulation of <span class="math inline">\(K\)</span>.</p>
+<p>In economies with human capital accumulation, we would need to correct for that too.</p>
+<p>What is A?</p>
+<p>(Section Transition)</p>
+<p>More on A</p>
+<p>We have so far established that, based on the development accounting exercises, a very significant portion of income per capita differences is given by differences in measured TFP.</p>
+<p>This is a black box where we put all that we cannot properly measure.</p>
+<p>A prominent recent literature has focused on the role of misallocation as a drag in countries’ development.</p>
+<p>For us, misallocation ends up in lower <span class="math inline">\(A\)</span>.</p>
+<p>Misallocation</p>
+<p>To understand the concept of misallocation, we need to first understand when it matters.</p>
+<p>First, by allocation, we mean how we split and use finite resources.</p>
+<p>Misallocation is generally understood to be an inefficient allocation of these resources.</p>
+<p>Efficiency is an elusive concept, as it requires us to make assumptions about how agents turn input into output, output into utility, and how we aggregate different agents’ utilities into a social welfare that we can maximize.</p>
+<p>Misallocation</p>
+<p>For simplicity, let’s assume away the latter issue by saying that there is a single household composed of very many individuals (atomistic).</p>
+<p>We focus on the allocation of resources across production units (firms/plants).</p>
+<p>When does this matter?</p>
+<p>Suppose you have a continuum of identical firms, does the allocation of resources matter?</p>
+<p>Misallocation</p>
+<p>Suppose firms have the same productivity and a production function like:</p>
+<p><span class="math display">\[Y_{i}=K_{i}^{\alpha}L_{i}^{1-\alpha}\]</span></p>
+<p>Suppose further that firms are competitive, make perfectly substitutable goods, and maximize their profits:</p>
+<p><span class="math display">\[\pi_{i}=PY_{i}-rK_{i}-wL_{i}\]</span></p>
+<p>From the usual FOC we get:</p>
+<p><span class="math display">\[\frac{\alpha}{1-\alpha}\frac{w}{r}=\frac{K_{i}^{*}}{L_{i}^{*}}, \quad \forall i\]</span></p>
+<p>note that the LHS is the same for all firms, so the RHS is identical.</p>
+<p>Misallocation</p>
+<p>This tells us that all firms will optimally have the same amount of capital per worker, but should different firms have different amounts of capital and workers?</p>
+<p>And, more importantly, does it matter?</p>
+<p>Call <span class="math inline">\(K^{*}/L^{*}\equiv k\)</span> and check the aggregate production of the economy.</p>
+<p>Since goods are perfect substitutes, total output is just the sum of individual firms’ output:</p>
+<p><span class="math display">\[Y=\int_{i}Y_{i}\]</span></p>
+<p>Misallocation</p>
+<p>From the production function:</p>
+<p><span class="math display">\[Y=\int_{i}K_{i}^{\alpha}L_{i}^{1-\alpha}=\int_{i}k^{\alpha}L_{i}\]</span></p>
+<p>Recalling that the total amount of labor in the economy is <span class="math inline">\(L\)</span> and capital is <span class="math inline">\(K\)</span>, we have that:</p>
+<p><span class="math display">\[Y=k^{\alpha}\int_{i}L_{i}=k^{\alpha}L\]</span></p>
+<p>Noting that I can rewrite the capital market clearing as:</p>
+<p><span class="math display">\[K=\int_{i}K_{i}=\int_{i}kL_{i}\]</span></p>
+<p>Misallocation</p>
+<p>We obtain:</p>
+<p><span class="math display">\[Y=K^{\alpha}L^{1-\alpha}\]</span></p>
+<p>Bottom line: if firms</p>
+<p>are competitive</p>
+<p>operate the same production function with CRS</p>
+<p>in the same factor markets</p>
+<p>The allocation of resources across firms is irrelevant.</p>
+<p>Misallocation</p>
+<p>The assumptions we made are all important:</p>
+<p>if firms are not competitive (and their market power is heterogeneous), their MRPs are going to be different and, therefore, their optimal scale.</p>
+<p>if firms do not operate a CRS production function, then reallocating a unit of <span class="math inline">\(k\)</span> from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> changes aggregate output.</p>
+<p>if they operate in different production markets their <span class="math inline">\(r\)</span>’s and <span class="math inline">\(w\)</span>’s are different and so are their <span class="math inline">\(K^{*}/L^{*}\)</span>.</p>
+<p>Misallocation</p>
+<p>We can study this problem with a bit more structure by making stronger assumptions about the economy.</p>
+<p>In doing so we follow a seminal paper by Hsieh and Klenow (2009).</p>
+<p>Key goal: use a model to quantify cross-country differences in misallocation and answer questions like:</p>
+<p>What would India’s GDP per capita be if it had the degree of misallocation of the US?</p>
+<p>This is equivalent to asking:</p>
+<p>How much of the difference between US and India is driven by misallocation?</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>The way we go about this is first:</p>
+<p>Describe the economy</p>
+<p>Solve for the undistorted allocation</p>
+<p>Solve the distorted allocation</p>
+<p>Look at the implied measured <span class="math inline">\(A\)</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Households have CES preferences over imperfectly substitutable varieties:</p>
+<p><span class="math display">\[C=\left(\int_{i}{c_{i}}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}}, \quad \sigma&gt;1\]</span></p>
+<p>They maximize utility (consumption) subject to a budget constraint:</p>
+<p><span class="math display">\[\int_{i}p_{i}C_{i}\le I\]</span></p>
+<p>Define the ideal price index <span class="math inline">\(P\)</span> (cost of unit of <span class="math inline">\(C\)</span> when the household optimizes) such that:</p>
+<p><span class="math display">\[PC=\int_{i}c_{i}p_{i}\]</span></p>
+<p>CES Observations</p>
+<p><span class="math inline">\(\sigma\)</span> governs the elasticity of substitution.</p>
+<p><span class="math inline">\(\sigma&gt;1\)</span>: substitutes</p>
+<p><span class="math inline">\(\sigma\in(0,1)\)</span>: complements</p>
+<p>and nests other well-known aggregators:</p>
+<p><span class="math inline">\(\sigma\rightarrow\infty\)</span>: perfect substitutes</p>
+<p><span class="math inline">\(\sigma\rightarrow0\)</span>: perfect complements</p>
+<p><span class="math inline">\(\sigma\rightarrow1\)</span>: Cobb-Douglas</p>
+<p>CES Observations</p>
+<p>The aggregator has love-for-variety: consumers are happier to split the same consumption on more varieties.</p>
+<p>Suppose that there is a measure <span class="math inline">\(N\)</span> of varieties (<span class="math inline">\(f_{i}=N\)</span>).</p>
+<p>Suppose the household splits consumption equally across varieties (<span class="math inline">\(c_{i}=c/N, \forall i\)</span>).</p>
+<p>Then:</p>
+<p><span class="math display">\[C=\left(\int_{i}(c/N)^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}} = c/N\left(\int_{i} 1\right)^{\frac{\sigma}{\sigma-1}} = c/NN^{\frac{\sigma}{\sigma-1}}=cN^{\frac{1}{\sigma}}\]</span></p>
+<p>which is increasing in <span class="math inline">\(N\)</span>.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>The household optimization problem implies a demand schedule:</p>
+<p><span class="math display">\[c_{i}=p_{i}^{-\sigma}P^{\sigma}C\]</span></p>
+<p>where <span class="math inline">\(P\)</span> is:</p>
+<p><span class="math display">\[P=\left(\int_{i}p_{i}^{1-\sigma}\right)^{\frac{1}{1-\sigma}}\]</span></p>
+<p>This gives us a demand schedule for each variety <span class="math inline">\(i\)</span>.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Firms operate a CRS Cobb-Douglas production function with heterogeneous productivities <span class="math inline">\(A_{i}\)</span>:</p>
+<p><span class="math display">\[y_{i}=A_{i}K_{i}^{\alpha}L_{i}^{1-\alpha}\]</span></p>
+<p>They maximize profits:</p>
+<p><span class="math display">\[\pi_{i}=p_{i}(y_{i})y_{i}-wL_{i}-rK_{i}\]</span></p>
+<p>They compete under monopolistic competition:</p>
+<p>firms are monopolists of their own variety (account for how quantity choice affects the willingness to pay)</p>
+<p>too small to affect aggregate quantities and prices (take <span class="math inline">\(w\)</span>, <span class="math inline">\(r\)</span>, <span class="math inline">\(P\)</span>, <span class="math inline">\(Y\)</span> as given)</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>By the properties of CRS production functions, we know that the marginal cost is going to be constant.</p>
+<p>We also know how to compute the optimal input mix by minimizing expenditures.</p>
+<p>We can focus on the quantity choice and rewrite the firm problem as:</p>
+<p><span class="math display">\[\max_{p_{i}}\pi_{i}=p_{i}y_{i}(p_{i})-\frac{c}{A_{i}}y_{i}(p_{i})\]</span></p>
+<p>where <span class="math inline">\(c\)</span> is the marginal cost (at the optimal input mix) for firms with productivity <span class="math inline">\(A=1\)</span>.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Like earlier in the notes, we know that the firm will optimally choose:</p>
+<p><span class="math display">\[p_{i}=\frac{\epsilon_{D}}{\epsilon_{D}-1}\frac{c}{A_{i}}\]</span></p>
+<p>But thanks to our CES assumption, <span class="math inline">\(\epsilon_{D}=\sigma\)</span>, which implies:</p>
+<p><span class="math display">\[p_{i}=\frac{\sigma}{\sigma-1}\frac{c}{A_{i}}\]</span></p>
+<p>We still need to determine <span class="math inline">\(c\)</span>, which we can do from the cost minimization of the firm.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Consider the firm, minimizing the total cost bill subject to the production plan:</p>
+<p><span class="math display">\[\min_{L_{i},K_{i}}wL_{i}+rK_{i}+\lambda[Y-A_{i}K_{i}^{\alpha}L_{i}^{1-\alpha}]\]</span></p>
+<p>The FOCs are:</p>
+<p><span class="math display">\[wL_{i}=\lambda(1-\alpha)y_{i}\]</span></p>
+<p><span class="math display">\[rK_{i}=\lambda\alpha y_{i}\]</span></p>
+<p>Substituting back into the PF, we obtain:</p>
+<p><span class="math display">\[L_{i}=\frac{y_{i}}{A_{i}}\left(\frac{1-\alpha}{\alpha}\right)^{\alpha}\left(\frac{r}{w}\right)^{\alpha}\]</span></p>
+<p><span class="math display">\[K_{i}=\frac{y_{i}}{A_{i}}\left(\frac{\alpha}{1-\alpha}\right)^{1-\alpha}\left(\frac{w}{r}\right)^{1-\alpha}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Plugging the optimal quantities into the cost function:</p>
+<p><span class="math display">\[C(y_{i})=r\frac{y_{i}}{A_{i}}\left(\frac{\alpha}{1-\alpha}\right)^{1-\alpha}\left(\frac{w}{r}\right)^{1-\alpha}+w\frac{y_{i}}{A_{i}}\left(\frac{1-\alpha}{\alpha}\right)^{\alpha}\left(\frac{r}{w}\right)^{\alpha}\]</span></p>
+<p>Simplifying we obtain:</p>
+<p><span class="math display">\[C(y_{i})=\frac{y_{i}}{A_{i}}\left(\frac{r}{\alpha}\right)^{\alpha}\left(\frac{w}{1-\alpha}\right)^{1-\alpha}\]</span></p>
+<p>Which implies that for a firm with <span class="math inline">\(A_{i}=1\)</span> the marginal cost is:</p>
+<p><span class="math display">\[c=\left(\frac{r}{\alpha}\right)^{\alpha}\left(\frac{w}{1-\alpha}\right)^{1-\alpha}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>From the pricing equation:</p>
+<p><span class="math display">\[p_{i}=\frac{\sigma}{\sigma-1}\frac{1}{A_{i}}\left(\frac{r}{\alpha}\right)^{\alpha}\left(\frac{w}{1-\alpha}\right)^{1-\alpha}\]</span></p>
+<p>Again, note that the only source of price differences across firms is given by the different productivities <span class="math inline">\(A_{i}\)</span>.</p>
+<p>Using the optimal pricing rule in the demand function, we can find how much each firm produces:</p>
+<p><span class="math display">\[y_{i}=\left(\frac{\sigma}{\sigma-1}c\right)^{-\sigma}A_{i}^{\sigma}P^{\sigma}C\]</span></p>
+<p>Where, again, the only source of size difference between firms is given by different <span class="math inline">\(A\)</span>’s, mediated by the elasticity of substitution <span class="math inline">\(\sigma\)</span>.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>In particular, note that:</p>
+<p><span class="math display">\[y_{i}\propto A_{i}^{\sigma}\]</span></p>
+<p>Another important observation is that, from the profit maximization problem:</p>
+<p><span class="math display">\[\max_{L_{i},K_{i}}\pi_{i}=p(y_{i})y_{i}(L_{i},K_{i})-wL_{i}-rK_{i}\]</span></p>
+<p>We have that firms optimally choose to produce to the point where:</p>
+<p><span class="math display">\[MRPK_{i}=(p^{\prime}y_{i}+p_{i})MPK_{i}=r\]</span></p>
+<p><span class="math display">\[MRPL_{i}=(p^{\prime}y_{i}+p_{i})MPL_{i}=w\]</span></p>
+<p>Note that the RHS is the same for all <span class="math inline">\(i\)</span>.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>As a consequence, firms differ in size based on productivity differences, but their MRPs are all equalized.</p>
+<p>The MPs are NOT equalized in general when firms have market power!</p>
+<p>Are resources misallocated?</p>
+<p>A social planner would want to allocate resources such that the MPs are the same across firms. Otherwise, we could take one unit of input from a low MP firm and give it to a high MP firm to obtain higher total output.</p>
+<p>Does a planner want to reallocate in this economy?</p>
+<p>Equivalently, are some firms too small relative to others?</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>We can check this by looking at the allocation that a planner would mandate.</p>
+<p>Maximizing output in this economy implies setting:</p>
+<p><span class="math display">\[\min_{\{c_{i}\}_{i}}\int_{i}\gamma_{i}c_{i}+\lambda\left[C-\left(\int_{i}{C_{i}}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}}\right]\]</span></p>
+<p>where <span class="math inline">\(\gamma_{i}\)</span> is the optimal marginal cost of good <span class="math inline">\(i\)</span>.</p>
+<p>The FOC implies:</p>
+<p><span class="math display">\[\gamma_{i}=\lambda c_{i}^{-\frac{1}{\sigma}}C^{\frac{1}{\sigma}}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>The implication of this FOC is that the socially optimal share of good <span class="math inline">\(i\)</span> out of total consumption:</p>
+<p><span class="math display">\[c_{i}\propto\gamma_{i}^{-\sigma}\]</span></p>
+<p>The planner operates the same technology as firms, which implies that the social marginal cost must have a common component and a firm-specific component that depends negatively on <span class="math inline">\(A_{i}\)</span>:</p>
+<p><span class="math display">\[\gamma_{i}=\gamma/A_{i}\]</span></p>
+<p>Like in the market equilibrium:</p>
+<p><span class="math display">\[c_{i}\propto A_{i}^{\sigma}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>We conclude that the market and the planner allocate the same shares across firms.</p>
+<p>Does this mean that there is no misallocation?</p>
+<p>Depends on the definition.</p>
+<p>There is no cross-sectional misallocation: the relative size of firms in the equilibrium is socially optimal.</p>
+<p>BUT the size of firms is not socially optimal as the planner would not let firms charge a markup: all firms are too small but by the same amount (because the markup is the same thanks to CES).</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Firms size is given by:</p>
+<p><span class="math display">\[y_{i}=p_{i}^{-\sigma}P^{\sigma}Y=\left(\frac{\sigma}{\sigma-1}c_{i}\right)^{-\sigma}P^{\sigma}Y\]</span></p>
+<p>The efficient allocation would have firm price at marginal cost.</p>
+<p>Which implies:</p>
+<p><span class="math display">\[y_{i}^{*}=c_{i}^{-\sigma}P^{\sigma}Y\]</span></p>
+<p><span class="math display">\[\frac{y_{i}}{y_{i}^{*}}=\left(\frac{\sigma-1}{\sigma}\right)^{\sigma}&lt;1\]</span></p>
+<p>In this CES economy, the distortion is not firm-specific, which means that the whole economy is too small, but resources are correctly allocated across firms.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Side note: the inefficiency in this economy is given by the presence of pure rents: there is no technology constraint that would warrant the existence of profits.</p>
+<p>For example, if the firms had decreasing returns to scale, some profits would be present even in the efficient allocation: <span class="math inline">\(p^{*}=c&lt;C/Y\)</span>.</p>
+<p>You can show that if we include entry costs to set up a firm and a Free Entry condition, the economy is efficient (Dixit Stiglitz, 1977).</p>
+<p>The profits associated with the markups are not pure rents anymore, they are quasi rents which allow firms to cover the entry costs.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>How do you fix the level inefficiency?</p>
+<p>Suppose the government introduces a tax/subsidy <span class="math inline">\(\tau\)</span> to production costs such that profits are given by:</p>
+<p><span class="math display">\[\pi(y_{i})=p_{i}(y_{i})y_{i}-\frac{\tau c}{A_{i}}y_{i}\]</span></p>
+<p>The optimal price of the firm is then:</p>
+<p><span class="math display">\[p_{i}=\frac{\sigma}{\sigma-1}\frac{\tau c}{A_{i}}\]</span></p>
+<p>If the planner sets <span class="math inline">\(\tau=\frac{\sigma-1}{\sigma}\)</span>, the firm prices at marginal cost and restores the efficient levels of production.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>So far:</p>
+<p>Barring a level inefficiency, there is no cross-sectional misallocation.</p>
+<p>We can compute the Solow Residual of this economy.</p>
+<p>Start from the aggregate production function:</p>
+<p><span class="math display">\[Y=AK^{\alpha}L^{1-\alpha}\]</span></p>
+<p>with:</p>
+<p><span class="math display">\[K=\int_{i}K_{i}\]</span></p>
+<p><span class="math display">\[L=\int_{i}L_{i}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>From the FOCs of the firm, we know that:</p>
+<p><span class="math display">\[K_{i}=\frac{\alpha c}{rA_{i}}y_{i}\]</span></p>
+<p><span class="math display">\[L_{i}=\frac{(1-\alpha)c}{wA_{i}}y_{i}\]</span></p>
+<p>Plugging into the market-clearing conditions:</p>
+<p><span class="math display">\[K=\int_{i}\frac{\alpha c}{rA_{i}}y_{i}\]</span></p>
+<p><span class="math display">\[L=\int_{i}\frac{(1-\alpha)c}{wA_{i}}y_{i}\]</span></p>
+<p>And into the aggregate PF:</p>
+<p><span class="math display">\[Y=A\left(\int_{i}\frac{\alpha c}{rA_{i}}y_{i}\right)^{\alpha}\left(\int_{i}\frac{(1-\alpha)c}{wA_{i}}y_{i}\right)^{1-\alpha}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Solving further:</p>
+<p><span class="math display">\[Y=A\int_{i}\frac{y_{i}}{A_{i}}c\left(\frac{\alpha}{r}\right)^{\alpha}\left(\frac{1-\alpha}{w}\right)^{1-\alpha}\]</span></p>
+<p>Given our previous result on <span class="math inline">\(c\)</span> we get:</p>
+<p><span class="math display">\[Y=A\int_{i}\frac{y_{i}}{A_{i}}\]</span></p>
+<p>Reshuffling:</p>
+<p><span class="math display">\[A^{-1}=\int_{i}A_{i}^{-1}\frac{y_{i}}{Y}\]</span></p>
+<p>The inverse Solow residual is an output-weighted aggregate of inverse individual productivities.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>We can go a step further by looking at what the output weights are.</p>
+<p>Recall the demand function:</p>
+<p><span class="math display">\[y_{i}=p_{i}^{-\sigma}P^{\sigma}Y\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[y_{i}/Y=(p_{i}/P)^{-\sigma}\]</span></p>
+<p>Given our result on <span class="math inline">\(P\)</span>:</p>
+<p><span class="math display">\[\frac{p_{i}}{P}=\frac{\frac{\sigma}{\sigma-1}cA_{i}^{-1}}{\left(\int_{j}\left(\frac{\sigma}{\sigma-1}cA_{j}^{-1}\right)^{1-\sigma}\right)^{\frac{1}{1-\sigma}}}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Simplifying, we obtain:</p>
+<p><span class="math display">\[\frac{p_{i}}{P}=\frac{A_{i}^{-1}}{\left(\int_{j}A_{j}^{\sigma-1}\right)^{\frac{1}{1-\sigma}}}\]</span></p>
+<p>Plugging this into the Solow Residual:</p>
+<p><span class="math display">\[A^{-1}=\int_{i}A_{i}^{-1}\left(\frac{A_{i}^{-1}}{\left(\int_{j}A_{j}^{\sigma-1}\right)^{\frac{1}{1-\sigma}}}\right)^{-\sigma}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Simplifying:</p>
+<p><span class="math display">\[A^{-1}=\int_{i}A_{i}^{-1}A_{i}^{\sigma}\left(\int_{j}A_{j}^{\sigma-1}\right)^{-\frac{\sigma}{\sigma-1}}\]</span></p>
+<p>Which finally implies:</p>
+<p><span class="math display">\[A=\left(\int_{i}A_{i}^{\sigma-1}\right)^{\frac{1}{\sigma-1}}\]</span></p>
+<p>The Solow Residual is a geometric average of individual productivities.</p>
+<p>Non-linear because more productive firms sell more <span class="math inline">\(\Rightarrow\)</span> higher weight.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Does our accounting framework work in this economy?</p>
+<p>Compute the factor shares from the capital and labour expenditures.</p>
+<p>Define the capital share as:</p>
+<p><span class="math display">\[\Theta_{K}=\frac{rK}{PY}=\frac{r}{PY}\int_{i}K_{i}\]</span></p>
+<p>Plugging in <span class="math inline">\(K_{i}=\frac{\alpha c}{rA_{i}}y_{i}\)</span>:</p>
+<p><span class="math display">\[\Theta_{K}=\frac{r}{PY}\int_{i}\frac{\alpha c}{rA_{i}}y_{i}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Simplifying:</p>
+<p><span class="math display">\[\Theta_{K}=\frac{\alpha}{PY}\int_{i}\frac{c}{A_{i}}y_{i}\]</span></p>
+<p>Recall that:</p>
+<p><span class="math display">\[p_{i}=\frac{\sigma}{\sigma-1}\frac{c}{A_{i}}\]</span></p>
+<p>Which implies:</p>
+<p><span class="math display">\[\Theta_{K}=\frac{\alpha}{PY}\int_{i}p_{i}\frac{\sigma-1}{\sigma}y_{i}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\Theta_{K}=\alpha\frac{\sigma-1}{\sigma}\int_{i}\frac{p_{i}y_{i}}{PY}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>But <span class="math inline">\(p_{i}y_{i}\)</span> is the value of sales of firm <span class="math inline">\(i\)</span>, while <span class="math inline">\(PY\)</span> is the value of sales of all firms, so it has to be that:</p>
+<p><span class="math display">\[\int_{i}p_{i}y_{i}=PY\]</span></p>
+<p>Which implies that:</p>
+<p><span class="math display">\[\Theta_{K}=\alpha\frac{\sigma-1}{\sigma}&lt;\alpha\]</span></p>
+<p>Same steps for labour give us:</p>
+<p><span class="math display">\[\Theta_{L}=(1-\alpha)\frac{\sigma-1}{\sigma}&lt;1-\alpha\]</span></p>
+<p>This is an economy with profits, so the factor shares do NOT coincide with the output elasticities!</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>We have an economy with no cross-sectional misallocation, where the Solow Residual depends on appropriately allocating resources across firms.</p>
+<p>We know that this matters because of the output weights in <span class="math inline">\(A\)</span>.</p>
+<p>We have also proved that those output weights are efficient since the planner and the market have the same relative firm size distribution.</p>
+<p>We now do it all again, but with cross-sectional misallocation.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Consider a distorted problem with wedges <span class="math inline">\(\tau_{i}^{K}\)</span> and <span class="math inline">\(\tau_{i}^{Y}\)</span> such that firm <span class="math inline">\(i\)</span> maximizes:</p>
+<p><span class="math display">\[\max_{y_{i},K_{i},L_{i}}(1-\tau_{i}^{Y})p_{i}(y_{i})y_{i}-wL_{i}-(1+\tau_{i}^{K})rK_{i}\]</span></p>
+<p>s.t.</p>
+<p><span class="math display">\[y_{i}=A_{i}K_{i}^{\alpha}L_{i}^{1-\alpha}\]</span></p>
+<p>Denote <span class="math inline">\(\tilde{r}_{i}=r(1+\tau_{i}^{K})\)</span> and <span class="math inline">\(\tilde{p}_{i}=p(1-\tau_{i}^{Y})\)</span>, so that we can solve basically the original problem:</p>
+<p><span class="math display">\[\pi_{i}=\tilde{p}_{i}(y_{i})y_{i}-wL_{i}-\tilde{r}_{i}K_{i}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>The FOCs are:</p>
+<p><span class="math display">\[\tilde{r}_{i}=\lambda_{i}\alpha A_{i}K_{i}^{\alpha-1}L_{i}^{1-\alpha}\]</span></p>
+<p><span class="math display">\[w=\lambda_{i}(1-\alpha)A_{i}K_{i}^{\alpha}L_{i}^{-\alpha}\]</span></p>
+<p>Note immediately that the optimal capital-labour-ratio is:</p>
+<p><span class="math display">\[\frac{K_{i}}{L_{i}}=\frac{\alpha}{1-\alpha}\frac{w}{r}\frac{1}{1+\tau_{i}^{K}}\]</span></p>
+<p>The presence of <span class="math inline">\(\tau_{i}^{K}\)</span> distorts the incentives to hire capital relative to labour.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Firms in this economy set their MRPs as:</p>
+<p><span class="math display">\[MRPL_{i}=w\frac{1}{1-\tau_{i}^{Y}}\]</span></p>
+<p><span class="math display">\[MRPK_{i}=r\frac{1+\tau_{i}^{K}}{1-\tau_{i}^{Y}}\]</span></p>
+<p>The presence of output wedges makes MRPs deviate from their marginal costs.</p>
+<p>If the output wedges are positive, they reduce the real MRPs relative to marginal costs.</p>
+<p>As a consequence, firms are optimally operating at a smaller scale, given their technologies and input prices.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>With the same steps as before, we can find the optimal price:</p>
+<p><span class="math display">\[\tilde{p}_{i}=\frac{\sigma}{\sigma-1}\frac{\tilde{c}_{i}}{A_{i}}\]</span></p>
+<p>Which implies:</p>
+<p><span class="math display">\[p_{i}=\frac{\sigma}{\sigma-1}\frac{\tilde{c}_{i}}{A_{i}}\frac{1}{1-\tau_{i}^{Y}}\]</span></p>
+<p>To obtain the distorted marginal cost, solve the cost minimization:</p>
+<p><span class="math display">\[\min_{K_{i},L_{i}}wL_{i}+\tilde{r}_{i}K_{i}+\lambda_{i}[y_{i}-A_{i}K_{i}^{\alpha}L_{i}^{1-\alpha}]\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>The FOCs say:</p>
+<p><span class="math display">\[\tilde{r}_{i}=\lambda_{i}\alpha A_{i}K_{i}^{\alpha-1}L_{i}^{1-\alpha}\]</span></p>
+<p><span class="math display">\[w=\lambda_{i}(1-\alpha)A_{i}K_{i}^{\alpha}L_{i}^{-\alpha}\]</span></p>
+<p>Solving for the optimal input quantities:</p>
+<p><span class="math display">\[K_{i}=\frac{\lambda_{i}\alpha y_{i}}{\tilde{r}_{i}}=\frac{\lambda_{i}\alpha y_{i}}{r(1+\tau_{i}^{K})}\]</span></p>
+<p><span class="math display">\[L_{i}=\frac{(1-\alpha)\lambda_{i}y_{i}}{w}\]</span></p>
+<p>Plugging into the PF:</p>
+<p><span class="math display">\[y_{i}=A_{i}\left(\frac{\lambda_{i}\alpha y_{i}}{r(1+\tau_{i}^{K})}\right)^{\alpha}\left(\frac{(1-\alpha)\lambda_{i}y_{i}}{w}\right)^{1-\alpha}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Which simplifies to:</p>
+<p><span class="math display">\[\lambda_{i}=A_{i}^{-1}\left(\frac{r}{\alpha}\right)^{\alpha}\left(\frac{w}{1-\alpha}\right)^{1-\alpha}(1+\tau_{i}^{K})^{\alpha}\]</span></p>
+<p>But recall that <span class="math inline">\(\lambda_{i}\)</span> is the marginal cost for firm <span class="math inline">\(i\)</span>, and that we defined <span class="math inline">\(c\)</span> as <span class="math inline">\(\left(\frac{r}{\alpha}\right)^{\alpha}\left(\frac{w}{1-\alpha}\right)^{1-\alpha}\)</span>. Hence:</p>
+<p><span class="math display">\[\lambda_{i}=A_{i}^{-1}c(1+\tau_{i}^{K})^{\alpha}\]</span></p>
+<p>Which implies that the price is:</p>
+<p><span class="math display">\[p_{i}=\frac{\sigma}{\sigma-1}\frac{c}{A_{i}}\frac{(1+\tau_{i}^{K})^{\alpha}}{1-\tau_{i}^{Y}}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>We can use this in the demand function to obtain:</p>
+<p><span class="math display">\[y_{i}=\left(\frac{\sigma}{\sigma-1}\frac{c}{A_{i}}\frac{(1+\tau_{i}^{K})^{\alpha}}{1-\tau_{i}^{Y}}\right)^{-\sigma}P^{\sigma}Y\]</span></p>
+<p>Which implies:</p>
+<p><span class="math display">\[y_{i}\propto A_{i}^{\sigma}\left(\frac{1-\tau_{i}^{Y}}{1+\tau_{i}^{K}}\right)^{\sigma}\]</span></p>
+<p>The firm-level wedges distort relative output.</p>
+<p>Since <span class="math inline">\(\tau\)</span>’s are firms-specific, we have cross-sectional misallocation.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Bad news for our growth/development accounting.</p>
+<p>From the FOCs of the minimization:</p>
+<p><span class="math display">\[(1+\tau_{i}^{K})rK_{i}=\alpha\frac{c}{A_{i}}(1+\tau_{i}^{K})^{\alpha}y_{i}\]</span></p>
+<p><span class="math display">\[wL_{i}=(1-\alpha)\frac{c}{A_{i}}(1+\tau_{i}^{K})^{\alpha}y_{i}\]</span></p>
+<p>Call the labour and capital shares <span class="math inline">\(\Theta_{L}\)</span> and <span class="math inline">\(\Theta_{K}\)</span>:</p>
+<p><span class="math display">\[\Theta_{K}=\frac{rK}{PY}=\frac{\alpha}{\frac{\sigma}{\sigma-1}}\int_{i}\frac{1-\tau_{i}^{Y}}{1+\tau_{i}^{K}}\frac{p_{i}y_{i}}{PY}\ne\alpha\]</span></p>
+<p><span class="math display">\[\Theta_{L}=\frac{wL}{PY}=\frac{1-\alpha}{\frac{\sigma}{\sigma-1}}\int_{i}(1-\tau_{i}^{Y})\frac{p_{i}y_{i}}{PY}\ne1-\alpha\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>These are distorted by market power by a factor <span class="math inline">\((\sigma-1)/\sigma\)</span>. This is because <span class="math inline">\(\Theta_{L}+\Theta_{K}&lt;PY\)</span> since there are positive profits and (you can show) the profit share is <span class="math inline">\(1/\sigma\)</span>.</p>
+<p>but they are also distorted by individual wedges.</p>
+<p>even if we had the same <span class="math inline">\(\tau^{K}\)</span> for all firms the relative labour to capital share would be distorted.</p>
+<p>the fact that they are firm-specific distorts them in a much harder way to undo.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Towards our stated goal of understanding how misallocation impacts measured <span class="math inline">\(A\)</span>, we return to inverting the aggregate production function:</p>
+<p><span class="math display">\[A=YK^{-\alpha}L^{\alpha-1}\]</span></p>
+<p>To simplify the next calculations, denote TFPR of firm <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[TFPR_{i}\equiv p_{i}A_{i}=\frac{\sigma}{\sigma-1}c\frac{(1+\tau_{i}^{K})^{\alpha}}{1-\tau_{i}^{Y}}\]</span></p>
+<p>And the aggregate version of the same object:</p>
+<p><span class="math display">\[TFPR=PA\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Start from the production function for the value of output:</p>
+<p><span class="math display">\[PY=PAK^{\alpha}L^{1-\alpha}\]</span></p>
+<p>Inverting the labour and capital shares:</p>
+<p><span class="math display">\[K=\frac{\Theta_{K}PY}{r}\]</span></p>
+<p><span class="math display">\[L=\frac{\Theta_{L}PY}{w}\]</span></p>
+<p>Plugging in, we obtain:</p>
+<p><span class="math display">\[PY=PA\left(\frac{\Theta_{K}PY}{r}\right)^{\alpha}\left(\frac{\Theta_{L}PY}{w}\right)^{1-\alpha}\]</span></p>
+<p>Which implies:</p>
+<p><span class="math display">\[PA=\left(\frac{r}{\Theta_{K}}\right)^{\alpha}\left(\frac{w}{\Theta_{L}}\right)^{1-\alpha}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p>We can work out TFPQ <span class="math inline">\(A\)</span> as <span class="math inline">\(A=TFPR/P\)</span></p>
+<p>From the Price index:</p>
+<p><span class="math display">\[P=\left(\int_{i}p_{i}^{1-\sigma}\right)^{\frac{1}{1-\sigma}}=\left(\int_{i}\left(\frac{TFPR_{i}}{A_{i}}\right)^{1-\sigma}\right)^{\frac{1}{1-\sigma}}\]</span></p>
+<p>Which implies:</p>
+<p><span class="math display">\[A=\left(\int_{j}\left(A_{j}\frac{TFPR}{TFPR_{j}}\right)^{\sigma-1}\right)^{\frac{1}{\sigma-1}}\]</span></p>
+<p>Hsieh and Klenow (2009)</p>
+<p><span class="math display">\[A=\left(\int_{j}\left(A_{j}\frac{TFPR}{TFPR_{j}}\right)^{\sigma-1}\right)^{\frac{1}{\sigma-1}}\]</span></p>
+<p>Note that TFPQ is a weighted geometric average of individual productivities.</p>
+<p>If the undistorted marginal revenue products were equalized across firms, we would get back the undistorted economy result for aggregate TFPQ.</p>
+<p>Since the aggregator is concave, higher dispersion in TFPR reduces aggregate productivity.</p>
+<p>The cost of misallocation comes from the dispersion in TFPR induced by firm-specific distortions.</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>Through the lens of this model, we can ask counterfactual questions:</p>
+<p>What if India, China, and the US had the efficient firm size distribution?</p>
+<p>What if India and China had the dispersion in TFPR of the US?</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>[Chart: Density of REVENUE TFP (TFPR) showing overlapping distributions for U.S., China, and India. The U.S. distribution is tighter (less dispersion), while China and India have thicker tails and more dispersion.]</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>[Chart: Density of QUANTITY TFP (TFPQ) showing overlapping distributions for U.S., China, and India. The U.S. distribution is shifted further to the right, reflecting higher overall TFPQ.]</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>TABLE IV: TFP GAINS FROM EQUALIZING TFPR WITHIN INDUSTRIES</p>
+<p>Notes. Entries are <span class="math inline">\(100(Y_{\text{efficient}}/Y-1)\)</span> where:</p>
+<p><span class="math display">\[Y/Y_{\text{efficient}}=\prod_{s=1}^{S}\left[\sum_{i=1}^{M_{s}}\left(\frac{A_{si}}{A_{s}}\frac{\overline{TFPR}_{si}}{TFPR_{si}}\right)^{\sigma-1}\right]^{\theta_{s}/(\sigma-1)}\]</span></p>
+<p><span class="math display">\[TFPR_{si}\equiv\frac{P_{si}Y_{si}}{K_{si}^{\alpha_{s}}(w_{si}L_{si})^{1-\alpha_{s}}}\]</span></p>
+<p>Country</p>
+<p>Year 1</p>
+<p>%</p>
+<p>Year 2</p>
+<p>%</p>
+<p>Year 3</p>
+<p>%</p>
+<p>China</p>
+<p>1998</p>
+<p>115.1</p>
+<p>2001</p>
+<p>95.8</p>
+<p>2005</p>
+<p>86.6</p>
+<p>India</p>
+<p>1987</p>
+<p>100.4</p>
+<p>1991</p>
+<p>102.1</p>
+<p>1994</p>
+<p>127.5</p>
+<p>United States</p>
+<p>1977</p>
+<p>36.1</p>
+<p>1987</p>
+<p>30.7</p>
+<p>1997</p>
+<p>42.9</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>[Chart: Density plot for China showing the Actual vs.&nbsp;Efficient distributions of TFPR. The “Efficient” distribution is much tighter and centered, whereas “Actual” shows significant left and right tails, indicating misallocation.]</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>[Chart: Density plot for India showing the Actual vs.&nbsp;Efficient distributions of TFPR. Similar to China, the “Actual” distribution is flatter and wider than the desired “Efficient” tight peak.]</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>[Chart: Density plot for the United States showing the Actual vs.&nbsp;Efficient distributions of TFPR. The U.S. “Actual” distribution tracks the “Efficient” distribution much closer than China or India, though some misallocation is still visible.]</p>
+<p>Hsieh and Klenow (2009)</p>
+<p>TABLE VI: TFP GAINS FROM EQUALIZING TFPR RELATIVE TO 1997 U.S. GAINS</p>
+<p>Country</p>
+<p>Year 1</p>
+<p>%</p>
+<p>Year 2</p>
+<p>%</p>
+<p>Year 3</p>
+<p>%</p>
+<p>China</p>
+<p>1998</p>
+<p>50.5</p>
+<p>2001</p>
+<p>37.0</p>
+<p>2005</p>
+<p>30.5</p>
+<p>India</p>
+<p>1987</p>
+<p>40.2</p>
+<p>1991</p>
+<p>41.4</p>
+<p>1994</p>
+<p>59.2</p>
+<p>Summary</p>
+<p>Unpacking A further.</p>
+<p>But still lots in it that should:</p>
+<p>Measurement error</p>
+<p>Adjustment costs that are not in the model</p>
+<p>Deviations from various assumptions (e.g., CES, CD, CRS, etc.)</p>
+<p>These missing elements can overturn the conclusion from HK that dispersion in marginal products is necessarily bad.</p>
+<p>With all these caveats, it is still a significant step forward in understanding what we measure as <span class="math inline">\(A\)</span>!</p>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
