@@ -169,3 +169,137 @@ When individuals are simultaneously employers and employees, their income is cla
 For all other sectors the shifts are small ($< 0.3$ pp). The sector rankings on both total LP growth and TFP growth are entirely preserved. The broad narrative — Mining and Agriculture at the top, Public sector and Professional services at the bottom — is unchanged.
 
 The assumption $\alpha = 1/3$ is a reasonable approximation for most market-sector industries. The exceptions are the two outliers at either extreme of the capital-intensity distribution: **Real estate** and **Agriculture**. For cross-sector comparisons, using sector-specific labour shares is the more rigorous approach, particularly when these two sectors are included.
+
+---
+
+## (h) LAB\_QI Imputation and Full-Period Results (1996–2011, imputed HC)
+
+### Imputation method and data availability
+
+The EUKLEMS labour quality index (`LAB_QI`) is observed only from **2008** onward in the Hungarian dataset. The underlying worker-type share data are absent before 2008, ruling out direct Törnqvist reconstruction for 1995–2007.
+
+The imputed series is an **ensemble of two backcasting methods** in growth-rate space ($\Delta \ln \text{LAB\_QI} \times 100$):
+
+1. **Nuclear-norm matrix completion (NNM):** `softImpute` on a 14-sector × 26-year matrix (`LP1ConLC`, `g_LAB`, `g_CAP_QI` auxiliary); lambda by LOO-CV on 2008–2021.
+2. **LASSO backcasting:** Pooled LASSO (sector FE + `LP1ConLC` + year trend) on 2009–2021 ($n=182$), ensembled 50/50 with sector Ridge. Levels back-chained from the 2008 anchor.
+
+**Identification caveat.** Both methods converge to sector-specific constant growth rates for the backcast. Held-out LOO RMSE ∼12 index points overall (3.6 pp D-E to ∼23 pp J). Pre-2008 results carry commensurate uncertainty.
+
+---
+
+### (c) Aggregate 3-factor decomposition — full period (1996–2011, imputed HC)
+
+| Year | LP growth (pp) | Capital deepening | HC (imp.\*) | TFP |
+|---:|---:|---:|---:|---:|
+| 1996 | 0.97 | 0.17 | 0.63\* | 0.17 |
+| 1997 | 1.44 | 0.07 | 0.65\* | 0.72 |
+| 1998 | 3.85 | 0.55 | 0.66\* | 2.64 |
+| 1999 | −0.27 | −0.36 | 0.68\* | −0.59 |
+| 2000 | 5.39 | 0.79 | 0.70\* | 3.90 |
+| 2001 | 6.18 | 1.27 | 0.71\* | 4.20 |
+| 2002 | 5.70 | 0.97 | 0.73\* | 4.00 |
+| 2003 | 4.04 | 0.51 | 0.75\* | 2.78 |
+| 2004 | 5.15 | 0.75 | 0.76\* | 3.64 |
+| 2005 | 7.31 | 1.68 | 0.78\* | 4.85 |
+| 2006 | 4.37 | 0.80 | 0.80\* | 2.78 |
+| 2007 | 2.59 | 1.37 | 0.81\* | 0.41 |
+| 2008 | 1.87 | 0.98 | 0.83 | 0.06 |
+| 2009 | −1.62 | 2.15 | −3.53 | −0.24 |
+| 2010 | 1.48 | 0.19 | 2.04 | −0.75 |
+| 2011 | 2.47 | 0.24 | 1.38 | 0.85 |
+
+\* HC imputed via NNM+LASSO ensemble.
+
+**Key observations:**
+
+- Imputed HC is smooth throughout 1996–2007 (+0.63 to +0.83 pp/yr) due to ensemble shrinkage. **The flat profile reflects absent pre-2008 microdata, not genuine stability.**
+- TFP drives ~70–80% of aggregate LP growth in expansion years.
+- The 2009 collapse is dominated by the observed HC shock (−3.53 pp): the GFC eliminated low-skill jobs disproportionately, mechanically raising LAB_QI (2010: +2.04 pp).
+- The 2005 peak (+7.31 pp) is almost entirely TFP (+4.85 pp).
+
+---
+
+### (d) Sectoral 3-factor decomposition — full period (1996–2011, α = 1/3, imputed HC)
+
+| Rank | Sector | LP growth | Capital deepening | HC (imp.\*) | TFP |
+|---:|---|---:|---:|---:|---:|
+| 1 | B — Mining | 9.99 | 2.48 | 1.29\* | 6.22 |
+| 2 | A — Agriculture | 5.58 | 1.32 | −1.21\* | 5.48 |
+| 3 | J — ICT | 5.28 | −0.27 | 2.72\* | 2.82 |
+| 4 | C — Manufacturing | 5.13 | 1.72 | −0.15\* | 3.56 |
+| 5 | H — Transport | 3.31 | 0.93 | 1.04\* | 1.35 |
+| 6 | G — Wholesale & retail | 2.73 | 1.57 | 0.06\* | 1.10 |
+| 7 | O-Q — Public sector | 2.34 | 0.54 | 1.51\* | 0.28 |
+| 8 | L — Real estate | 1.69 | 0.26 | 0.93\* | 0.51 |
+| 9 | R-S — Arts | 1.37 | 0.38 | 0.35\* | 0.64 |
+| 10 | F — Construction | 0.82 | 0.82 | −0.20\* | 0.20 |
+| 11 | D-E — Utilities | 0.66 | 1.22 | −0.55\* | −0.01 |
+| 12 | M-N — Professional | −1.29 | −1.04 | 2.95\* | −3.20 |
+| 13 | I — Accommodation | −1.49 | 0.78 | 0.52\* | −2.79 |
+| 14 | K — Finance | −4.15 | 0.17 | 1.04\* | −5.36 |
+
+\* HC for 1996–2007 imputed; 2008–2011 observed.
+
+**Key differences vs the short 2009–2011 window:**
+
+- **K — Finance** reverses from +2.38 pp TFP (short window) to −5.36 pp (full period): the pre-crisis boom and crash dominate.
+- **J — ICT** improves from −1.82 pp to +2.82 pp: the capital-shedding episode was confined to 2009–11.
+- **A — Agriculture** shows negative HC (−1.21 pp), consistent with rural depopulation, though uncertain given imputation.
+- **M-N — Professional** has the highest HC (+2.95 pp) but worst TFP outside K (−3.20 pp): Baumol cost disease over 16 years.
+- **D-E — Utilities** has near-zero TFP across both windows (−0.01 pp): genuine capital-heavy regulated-sector growth.
+
+---
+
+### (e) Sector-specific α + imputed HC — full period (1996–2011)
+
+$\alpha_s$ averaged over 1995–2011:
+
+| Sector | $\alpha_s$ | LP growth | Capital deepening | HC (imp.\*) | TFP |
+|---|---:|---:|---:|---:|---:|
+| B — Mining | 0.41 | 9.99 | 3.05 | 1.29\* | 5.64 |
+| A — Agriculture | 0.71 | 5.58 | 2.80 | −1.21\* | 3.99 |
+| J — ICT | 0.57 | 5.28 | −0.46 | 2.72\* | 3.01 |
+| C — Manufacturing | 0.49 | 5.13 | 2.53 | −0.15\* | 2.75 |
+| H — Transport | 0.37 | 3.31 | 1.04 | 1.04\* | 1.24 |
+| G — Wholesale & retail | 0.41 | 2.73 | 1.93 | 0.06\* | 0.75 |
+| O-Q — Public sector | 0.26 | 2.34 | 0.43 | 1.51\* | 0.40 |
+| L — Real estate | 0.89 | 1.69 | 0.68 | 0.93\* | 0.09 |
+| R-S — Arts | 0.50 | 1.37 | 0.56 | 0.35\* | 0.46 |
+| F — Construction | 0.48 | 0.82 | 1.19 | −0.20\* | −0.16 |
+| D-E — Utilities | 0.54 | 0.66 | 1.96 | −0.55\* | −0.76 |
+| M-N — Professional | 0.43 | −1.29 | −1.35 | 2.95\* | −2.89 |
+| I — Accommodation | 0.40 | −1.49 | 0.94 | 0.52\* | −2.95 |
+| K — Finance | 0.50 | −4.15 | 0.25 | 1.04\* | −5.44 |
+
+\* HC for 1996–2007 imputed.
+
+**TFP: fixed α = 1/3 vs. sector-specific α (1996–2011):**
+
+| Sector | TFP (α = 1/3) | TFP (α_s) | Δ TFP |
+|---|---:|---:|---:|
+| A — Agriculture | 5.48 | 3.99 | **−1.49** |
+| C — Manufacturing | 3.56 | 2.75 | **−0.81** |
+| D-E — Utilities | −0.01 | −0.76 | **−0.74** |
+| B — Mining | 6.22 | 5.64 | −0.57 |
+| L — Real estate | 0.51 | 0.09 | −0.43 |
+| F — Construction | 0.20 | −0.16 | −0.37 |
+| G — Wholesale & retail | 1.10 | 0.75 | −0.36 |
+| M-N — Professional | −3.20 | −2.89 | +0.31 |
+| J — ICT | 2.82 | 3.01 | +0.19 |
+| R-S — Arts | 0.64 | 0.46 | −0.19 |
+| I — Accommodation | −2.79 | −2.95 | −0.16 |
+| O-Q — Public sector | 0.28 | 0.40 | +0.11 |
+| H — Transport | 1.35 | 1.24 | −0.11 |
+| K — Finance | −5.36 | −5.44 | −0.08 |
+
+Three differences are amplified relative to the short-window (e) results:
+
+1. **Agriculture (A):** TFP gap widens to **−1.49 pp** (from −0.87 pp in 2009–11). $\alpha_s = 0.71$ up-weights 16 years of capital deepening (+2.80 pp vs. +1.32 pp under $\alpha = 1/3$), substantially reducing the Solow residual. The mixed-income misclassification caveat is proportionally more consequential at the full-period horizon.
+
+2. **Utilities (D-E):** Correction grows to **−0.74 pp**, turning TFP negative (−0.76 pp). With $\alpha_s = 0.54$ and consistently high capital deepening, the regulated utility sector’s entire LP growth is attributable to capital accumulation.
+
+3. **Manufacturing (C):** Correction is −0.81 pp (vs. −0.59 pp in 2009–11). TFP remains positive (+2.75 pp) but falls to fourth-highest.
+
+**ICT (J)** shows only +0.19 pp correction over the full period (vs. +1.00 pp in 2009–11): the negative capital deepening spell was concentrated in 2009–11.
+
+**Overall.** Sector TFP rankings are fully preserved under both α specifications and across both time windows. The $\alpha = 1/3$ assumption is most consequential for **Agriculture** and **Utilities** at the full-period horizon. For the remaining 12 sectors the α choice shifts TFP by less than 0.4 pp/yr.

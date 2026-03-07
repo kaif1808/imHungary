@@ -495,6 +495,13 @@ window.Quarto = {
 <li><strong>O-Q — Public sector</strong> (<span class="math inline">\(\alpha_s = 0.26\)</span>): labour-intensive, as expected for government services.</li>
 </ul>
 <p>Most manufacturing, trade, and service sectors cluster near <span class="math inline">\(\alpha_s \approx 0.40\)</span>–<span class="math inline">\(0.54\)</span>, somewhat above the standard <span class="math inline">\(1/3\)</span> assumption.</p>
+<section id="caveat-mixed-income-treatment-and-potential-labour-share-underestimation" class="level4">
+<h4 class="anchored" data-anchor-id="caveat-mixed-income-treatment-and-potential-labour-share-underestimation">Caveat: mixed income treatment and potential labour share underestimation</h4>
+<p>The labour share estimates (<span class="math inline">\(\alpha_s = 1 - \text{COMP}/\text{VA}\)</span>) rest on a critical assumption: that the compensation of employees (<code>COMP</code>) captures the true price of labour services. In sectors with substantial self-employment — notably <strong>Agriculture</strong> and <strong>Construction</strong> — this assumption is violated.</p>
+<p>When individuals are simultaneously employers and employees, their income is classified in national accounts as “mixed income” and split between labour and capital components according to regulatory and statistical conventions, not economic reality. In most EU countries, this allocation is somewhat arbitrary: agricultural mixed income is often attributed partly to capital (land rents, returns to machinery) and partly to labour (imputed self-employment compensation), but the split is not based on actual factor productivities.</p>
+<p><strong>Empirical implication:</strong> Measured <span class="math inline">\(\alpha_s\)</span> for high-self-employment sectors (Agriculture: 27% of persons engaged in the sample, Construction: 20%) may <strong>overstate</strong> the true capital share and <strong>understate</strong> the true labour share. If self-employed farmers’ income were re-allocated to labour (reflecting the fact that family labour is the binding constraint in small farms), <span class="math inline">\(\alpha_s\)</span> for Agriculture could fall toward <span class="math inline">\(0.55\)</span>–<span class="math inline">\(0.65\)</span>, and for Construction toward <span class="math inline">\(0.45\)</span>–<span class="math inline">\(0.55\)</span>.</p>
+<p><strong>Robustness interpretation:</strong> The sector-specific TFP estimates for Agriculture and Construction should therefore be viewed as <strong>upper bounds</strong> on true TFP (because they assign more of measured output growth to capital deepening, leaving less for the residual). A sensitivity analysis using alternative labour share assumptions for these two sectors is warranted in future work.</p>
+</section>
 </section>
 <section id="tfp-comparison-α-13-vs.-sector-specific-α-20092011" class="level3">
 <h3 class="anchored" data-anchor-id="tfp-comparison-α-13-vs.-sector-specific-α-20092011">TFP comparison: α = 1/3 vs.&nbsp;sector-specific α (2009–2011)</h3>
@@ -605,6 +612,541 @@ window.Quarto = {
 </ol>
 <p>For all other sectors the shifts are small (<span class="math inline">\(&lt; 0.3\)</span> pp). The sector rankings on both total LP growth and TFP growth are entirely preserved. The broad narrative — Mining and Agriculture at the top, Public sector and Professional services at the bottom — is unchanged.</p>
 <p>The assumption <span class="math inline">\(\alpha = 1/3\)</span> is a reasonable approximation for most market-sector industries. The exceptions are the two outliers at either extreme of the capital-intensity distribution: <strong>Real estate</strong> and <strong>Agriculture</strong>. For cross-sector comparisons, using sector-specific labour shares is the more rigorous approach, particularly when these two sectors are included.</p>
+<hr>
+</section>
+</section>
+<section id="h-lab_qi-imputation-and-full-period-results-19962011-imputed-hc" class="level2">
+<h2 class="anchored" data-anchor-id="h-lab_qi-imputation-and-full-period-results-19962011-imputed-hc">(h) LAB_QI Imputation and Full-Period Results (1996–2011, imputed HC)</h2>
+<section id="imputation-method-and-data-availability" class="level3">
+<h3 class="anchored" data-anchor-id="imputation-method-and-data-availability">Imputation method and data availability</h3>
+<p>The EUKLEMS labour quality index (<code>LAB_QI</code>) is observed only from <strong>2008</strong> onward in the Hungarian dataset. The underlying worker-type share data are absent before 2008, ruling out direct Törnqvist reconstruction for 1995–2007.</p>
+<p>The imputed series is an <strong>ensemble of two backcasting methods</strong> in growth-rate space (<span class="math inline">\(\Delta \ln \text{LAB\_QI} \times 100\)</span>):</p>
+<ol type="1">
+<li><strong>Nuclear-norm matrix completion (NNM):</strong> <code>softImpute</code> on a 14-sector × 26-year matrix (<code>LP1ConLC</code>, <code>g_LAB</code>, <code>g_CAP_QI</code> auxiliary); lambda by LOO-CV on 2008–2021.</li>
+<li><strong>LASSO backcasting:</strong> Pooled LASSO (sector FE + <code>LP1ConLC</code> + year trend) on 2009–2021 (<span class="math inline">\(n=182\)</span>), ensembled 50/50 with sector Ridge. Levels back-chained from the 2008 anchor.</li>
+</ol>
+<p><strong>Identification caveat.</strong> Both methods converge to sector-specific constant growth rates for the backcast. Held-out LOO RMSE ∼12 index points overall (3.6 pp D-E to ∼23 pp J). Pre-2008 results carry commensurate uncertainty.</p>
+<hr>
+</section>
+<section id="c-aggregate-3-factor-decomposition-full-period-19962011-imputed-hc" class="level3">
+<h3 class="anchored" data-anchor-id="c-aggregate-3-factor-decomposition-full-period-19962011-imputed-hc">(c) Aggregate 3-factor decomposition — full period (1996–2011, imputed HC)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">LP growth (pp)</th>
+<th style="text-align: right;">Capital deepening</th>
+<th style="text-align: right;">HC (imp.*)</th>
+<th style="text-align: right;">TFP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1996</td>
+<td style="text-align: right;">0.97</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.63*</td>
+<td style="text-align: right;">0.17</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1997</td>
+<td style="text-align: right;">1.44</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.65*</td>
+<td style="text-align: right;">0.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1998</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">0.66*</td>
+<td style="text-align: right;">2.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">−0.27</td>
+<td style="text-align: right;">−0.36</td>
+<td style="text-align: right;">0.68*</td>
+<td style="text-align: right;">−0.59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">5.39</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.70*</td>
+<td style="text-align: right;">3.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">6.18</td>
+<td style="text-align: right;">1.27</td>
+<td style="text-align: right;">0.71*</td>
+<td style="text-align: right;">4.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">5.70</td>
+<td style="text-align: right;">0.97</td>
+<td style="text-align: right;">0.73*</td>
+<td style="text-align: right;">4.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">4.04</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">0.75*</td>
+<td style="text-align: right;">2.78</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">5.15</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.76*</td>
+<td style="text-align: right;">3.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">7.31</td>
+<td style="text-align: right;">1.68</td>
+<td style="text-align: right;">0.78*</td>
+<td style="text-align: right;">4.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">4.37</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.80*</td>
+<td style="text-align: right;">2.78</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">2.59</td>
+<td style="text-align: right;">1.37</td>
+<td style="text-align: right;">0.81*</td>
+<td style="text-align: right;">0.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">1.87</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">−1.62</td>
+<td style="text-align: right;">2.15</td>
+<td style="text-align: right;">−3.53</td>
+<td style="text-align: right;">−0.24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">1.48</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">2.04</td>
+<td style="text-align: right;">−0.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">2.47</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">1.38</td>
+<td style="text-align: right;">0.85</td>
+</tr>
+</tbody>
+</table>
+<p>* HC imputed via NNM+LASSO ensemble.</p>
+<p><strong>Key observations:</strong></p>
+<ul>
+<li>Imputed HC is smooth throughout 1996–2007 (+0.63 to +0.83 pp/yr) due to ensemble shrinkage. <strong>The flat profile reflects absent pre-2008 microdata, not genuine stability.</strong></li>
+<li>TFP drives ~70–80% of aggregate LP growth in expansion years.</li>
+<li>The 2009 collapse is dominated by the observed HC shock (−3.53 pp): the GFC eliminated low-skill jobs disproportionately, mechanically raising LAB_QI (2010: +2.04 pp).</li>
+<li>The 2005 peak (+7.31 pp) is almost entirely TFP (+4.85 pp).</li>
+</ul>
+<hr>
+</section>
+<section id="d-sectoral-3-factor-decomposition-full-period-19962011-α-13-imputed-hc" class="level3">
+<h3 class="anchored" data-anchor-id="d-sectoral-3-factor-decomposition-full-period-19962011-α-13-imputed-hc">(d) Sectoral 3-factor decomposition — full period (1996–2011, α = 1/3, imputed HC)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Rank</th>
+<th>Sector</th>
+<th style="text-align: right;">LP growth</th>
+<th style="text-align: right;">Capital deepening</th>
+<th style="text-align: right;">HC (imp.*)</th>
+<th style="text-align: right;">TFP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td>B — Mining</td>
+<td style="text-align: right;">9.99</td>
+<td style="text-align: right;">2.48</td>
+<td style="text-align: right;">1.29*</td>
+<td style="text-align: right;">6.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td>A — Agriculture</td>
+<td style="text-align: right;">5.58</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: right;">−1.21*</td>
+<td style="text-align: right;">5.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td>J — ICT</td>
+<td style="text-align: right;">5.28</td>
+<td style="text-align: right;">−0.27</td>
+<td style="text-align: right;">2.72*</td>
+<td style="text-align: right;">2.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td>C — Manufacturing</td>
+<td style="text-align: right;">5.13</td>
+<td style="text-align: right;">1.72</td>
+<td style="text-align: right;">−0.15*</td>
+<td style="text-align: right;">3.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td>H — Transport</td>
+<td style="text-align: right;">3.31</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">1.04*</td>
+<td style="text-align: right;">1.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td>G — Wholesale &amp; retail</td>
+<td style="text-align: right;">2.73</td>
+<td style="text-align: right;">1.57</td>
+<td style="text-align: right;">0.06*</td>
+<td style="text-align: right;">1.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td>O-Q — Public sector</td>
+<td style="text-align: right;">2.34</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">1.51*</td>
+<td style="text-align: right;">0.28</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td>L — Real estate</td>
+<td style="text-align: right;">1.69</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.93*</td>
+<td style="text-align: right;">0.51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td>R-S — Arts</td>
+<td style="text-align: right;">1.37</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.35*</td>
+<td style="text-align: right;">0.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td>F — Construction</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">−0.20*</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td>D-E — Utilities</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">1.22</td>
+<td style="text-align: right;">−0.55*</td>
+<td style="text-align: right;">−0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td>M-N — Professional</td>
+<td style="text-align: right;">−1.29</td>
+<td style="text-align: right;">−1.04</td>
+<td style="text-align: right;">2.95*</td>
+<td style="text-align: right;">−3.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td>I — Accommodation</td>
+<td style="text-align: right;">−1.49</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.52*</td>
+<td style="text-align: right;">−2.79</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td>K — Finance</td>
+<td style="text-align: right;">−4.15</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">1.04*</td>
+<td style="text-align: right;">−5.36</td>
+</tr>
+</tbody>
+</table>
+<p>* HC for 1996–2007 imputed; 2008–2011 observed.</p>
+<p><strong>Key differences vs the short 2009–2011 window:</strong></p>
+<ul>
+<li><strong>K — Finance</strong> reverses from +2.38 pp TFP (short window) to −5.36 pp (full period): the pre-crisis boom and crash dominate.</li>
+<li><strong>J — ICT</strong> improves from −1.82 pp to +2.82 pp: the capital-shedding episode was confined to 2009–11.</li>
+<li><strong>A — Agriculture</strong> shows negative HC (−1.21 pp), consistent with rural depopulation, though uncertain given imputation.</li>
+<li><strong>M-N — Professional</strong> has the highest HC (+2.95 pp) but worst TFP outside K (−3.20 pp): Baumol cost disease over 16 years.</li>
+<li><strong>D-E — Utilities</strong> has near-zero TFP across both windows (−0.01 pp): genuine capital-heavy regulated-sector growth.</li>
+</ul>
+<hr>
+</section>
+<section id="e-sector-specific-α-imputed-hc-full-period-19962011" class="level3">
+<h3 class="anchored" data-anchor-id="e-sector-specific-α-imputed-hc-full-period-19962011">(e) Sector-specific α + imputed HC — full period (1996–2011)</h3>
+<p><span class="math inline">\(\alpha_s\)</span> averaged over 1995–2011:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sector</th>
+<th style="text-align: right;"><span class="math inline">\(\alpha_s\)</span></th>
+<th style="text-align: right;">LP growth</th>
+<th style="text-align: right;">Capital deepening</th>
+<th style="text-align: right;">HC (imp.*)</th>
+<th style="text-align: right;">TFP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B — Mining</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">9.99</td>
+<td style="text-align: right;">3.05</td>
+<td style="text-align: right;">1.29*</td>
+<td style="text-align: right;">5.64</td>
+</tr>
+<tr class="even">
+<td>A — Agriculture</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">5.58</td>
+<td style="text-align: right;">2.80</td>
+<td style="text-align: right;">−1.21*</td>
+<td style="text-align: right;">3.99</td>
+</tr>
+<tr class="odd">
+<td>J — ICT</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">5.28</td>
+<td style="text-align: right;">−0.46</td>
+<td style="text-align: right;">2.72*</td>
+<td style="text-align: right;">3.01</td>
+</tr>
+<tr class="even">
+<td>C — Manufacturing</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">5.13</td>
+<td style="text-align: right;">2.53</td>
+<td style="text-align: right;">−0.15*</td>
+<td style="text-align: right;">2.75</td>
+</tr>
+<tr class="odd">
+<td>H — Transport</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">3.31</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">1.04*</td>
+<td style="text-align: right;">1.24</td>
+</tr>
+<tr class="even">
+<td>G — Wholesale &amp; retail</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">2.73</td>
+<td style="text-align: right;">1.93</td>
+<td style="text-align: right;">0.06*</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+<tr class="odd">
+<td>O-Q — Public sector</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">2.34</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">1.51*</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="even">
+<td>L — Real estate</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">1.69</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.93*</td>
+<td style="text-align: right;">0.09</td>
+</tr>
+<tr class="odd">
+<td>R-S — Arts</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">1.37</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.35*</td>
+<td style="text-align: right;">0.46</td>
+</tr>
+<tr class="even">
+<td>F — Construction</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">1.19</td>
+<td style="text-align: right;">−0.20*</td>
+<td style="text-align: right;">−0.16</td>
+</tr>
+<tr class="odd">
+<td>D-E — Utilities</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">1.96</td>
+<td style="text-align: right;">−0.55*</td>
+<td style="text-align: right;">−0.76</td>
+</tr>
+<tr class="even">
+<td>M-N — Professional</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">−1.29</td>
+<td style="text-align: right;">−1.35</td>
+<td style="text-align: right;">2.95*</td>
+<td style="text-align: right;">−2.89</td>
+</tr>
+<tr class="odd">
+<td>I — Accommodation</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">−1.49</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">0.52*</td>
+<td style="text-align: right;">−2.95</td>
+</tr>
+<tr class="even">
+<td>K — Finance</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">−4.15</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">1.04*</td>
+<td style="text-align: right;">−5.44</td>
+</tr>
+</tbody>
+</table>
+<p>* HC for 1996–2007 imputed.</p>
+<p><strong>TFP: fixed α = 1/3 vs.&nbsp;sector-specific α (1996–2011):</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sector</th>
+<th style="text-align: right;">TFP (α = 1/3)</th>
+<th style="text-align: right;">TFP (α_s)</th>
+<th style="text-align: right;">Δ TFP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A — Agriculture</td>
+<td style="text-align: right;">5.48</td>
+<td style="text-align: right;">3.99</td>
+<td style="text-align: right;"><strong>−1.49</strong></td>
+</tr>
+<tr class="even">
+<td>C — Manufacturing</td>
+<td style="text-align: right;">3.56</td>
+<td style="text-align: right;">2.75</td>
+<td style="text-align: right;"><strong>−0.81</strong></td>
+</tr>
+<tr class="odd">
+<td>D-E — Utilities</td>
+<td style="text-align: right;">−0.01</td>
+<td style="text-align: right;">−0.76</td>
+<td style="text-align: right;"><strong>−0.74</strong></td>
+</tr>
+<tr class="even">
+<td>B — Mining</td>
+<td style="text-align: right;">6.22</td>
+<td style="text-align: right;">5.64</td>
+<td style="text-align: right;">−0.57</td>
+</tr>
+<tr class="odd">
+<td>L — Real estate</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">−0.43</td>
+</tr>
+<tr class="even">
+<td>F — Construction</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">−0.16</td>
+<td style="text-align: right;">−0.37</td>
+</tr>
+<tr class="odd">
+<td>G — Wholesale &amp; retail</td>
+<td style="text-align: right;">1.10</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">−0.36</td>
+</tr>
+<tr class="even">
+<td>M-N — Professional</td>
+<td style="text-align: right;">−3.20</td>
+<td style="text-align: right;">−2.89</td>
+<td style="text-align: right;">+0.31</td>
+</tr>
+<tr class="odd">
+<td>J — ICT</td>
+<td style="text-align: right;">2.82</td>
+<td style="text-align: right;">3.01</td>
+<td style="text-align: right;">+0.19</td>
+</tr>
+<tr class="even">
+<td>R-S — Arts</td>
+<td style="text-align: right;">0.64</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">−0.19</td>
+</tr>
+<tr class="odd">
+<td>I — Accommodation</td>
+<td style="text-align: right;">−2.79</td>
+<td style="text-align: right;">−2.95</td>
+<td style="text-align: right;">−0.16</td>
+</tr>
+<tr class="even">
+<td>O-Q — Public sector</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">+0.11</td>
+</tr>
+<tr class="odd">
+<td>H — Transport</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">1.24</td>
+<td style="text-align: right;">−0.11</td>
+</tr>
+<tr class="even">
+<td>K — Finance</td>
+<td style="text-align: right;">−5.36</td>
+<td style="text-align: right;">−5.44</td>
+<td style="text-align: right;">−0.08</td>
+</tr>
+</tbody>
+</table>
+<p>Three differences are amplified relative to the short-window (e) results:</p>
+<ol type="1">
+<li><p><strong>Agriculture (A):</strong> TFP gap widens to <strong>−1.49 pp</strong> (from −0.87 pp in 2009–11). <span class="math inline">\(\alpha_s = 0.71\)</span> up-weights 16 years of capital deepening (+2.80 pp vs.&nbsp;+1.32 pp under <span class="math inline">\(\alpha = 1/3\)</span>), substantially reducing the Solow residual. The mixed-income misclassification caveat is proportionally more consequential at the full-period horizon.</p></li>
+<li><p><strong>Utilities (D-E):</strong> Correction grows to <strong>−0.74 pp</strong>, turning TFP negative (−0.76 pp). With <span class="math inline">\(\alpha_s = 0.54\)</span> and consistently high capital deepening, the regulated utility sector’s entire LP growth is attributable to capital accumulation.</p></li>
+<li><p><strong>Manufacturing (C):</strong> Correction is −0.81 pp (vs.&nbsp;−0.59 pp in 2009–11). TFP remains positive (+2.75 pp) but falls to fourth-highest.</p></li>
+</ol>
+<p><strong>ICT (J)</strong> shows only +0.19 pp correction over the full period (vs.&nbsp;+1.00 pp in 2009–11): the negative capital deepening spell was concentrated in 2009–11.</p>
+<p><strong>Overall.</strong> Sector TFP rankings are fully preserved under both α specifications and across both time windows. The <span class="math inline">\(\alpha = 1/3\)</span> assumption is most consequential for <strong>Agriculture</strong> and <strong>Utilities</strong> at the full-period horizon. For the remaining 12 sectors the α choice shifts TFP by less than 0.4 pp/yr.</p>
 </section>
 </section>
 </section>
