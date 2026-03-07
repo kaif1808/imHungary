@@ -127,6 +127,16 @@ Two sectors are dramatically different from $1/3$:
 
 Most manufacturing, trade, and service sectors cluster near $\alpha_s \approx 0.40$–$0.54$, somewhat above the standard $1/3$ assumption.
 
+#### Caveat: mixed income treatment and potential labour share underestimation
+
+The labour share estimates ($\alpha_s = 1 - \text{COMP}/\text{VA}$) rest on a critical assumption: that the compensation of employees (`COMP`) captures the true price of labour services. In sectors with substantial self-employment — notably **Agriculture** and **Construction** — this assumption is violated.
+
+When individuals are simultaneously employers and employees, their income is classified in national accounts as "mixed income" and split between labour and capital components according to regulatory and statistical conventions, not economic reality. In most EU countries, this allocation is somewhat arbitrary: agricultural mixed income is often attributed partly to capital (land rents, returns to machinery) and partly to labour (imputed self-employment compensation), but the split is not based on actual factor productivities.
+
+**Empirical implication:** Measured $\alpha_s$ for high-self-employment sectors (Agriculture: 27% of persons engaged in the sample, Construction: 20%) may **overstate** the true capital share and **understate** the true labour share. If self-employed farmers' income were re-allocated to labour (reflecting the fact that family labour is the binding constraint in small farms), $\alpha_s$ for Agriculture could fall toward $0.55$–$0.65$, and for Construction toward $0.45$–$0.55$.
+
+**Robustness interpretation:** The sector-specific TFP estimates for Agriculture and Construction should therefore be viewed as **upper bounds** on true TFP (because they assign more of measured output growth to capital deepening, leaving less for the residual). A sensitivity analysis using alternative labour share assumptions for these two sectors is warranted in future work.
+
 ### TFP comparison: α = 1/3 vs. sector-specific α (2009–2011)
 
 | Sector | TFP ($\alpha = 1/3$) | TFP (sector-$\alpha$) | $\Delta$ TFP |
