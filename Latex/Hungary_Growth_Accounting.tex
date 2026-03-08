@@ -1,0 +1,291 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry, booktabs, graphicx, amsmath, hyperref}
+\graphicspath{{../}}
+\geometry{margin=1in}
+\title{Hungary Growth Accounting}
+\author{Kai Faulkner, Amaani Bashir, Carlos Rubiano, Matthew Copland}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Country and Time Period}
+
+We analyse Hungary over the period 1995–2011. This window was chosen to span the country’s post-socialist transition from the mid-1990s through to the aftermath of the Global Financial Crisis. All data are drawn from the EUKLEMS database (Groningen Growth and Development Centre), which provides harmonised national and capital accounts at the sectoral level across European economies.
+
+We would like to note that one variable required more extensive treatment. The EUKLEMS labour composition index (‘\textit{LAB\_QI}’), which measures the quality-adjusted growth rate of labour input and is necessary for the three-factor decomposition is absent for Hungary before 2008. We conduct a two-factor decomposition using the original data for comparative purposes. For the three-factor decomposition, we impute the missing 1995–2007 values using an XGBoost gradient-boosting backcasting, as described below.
+
+\section{Aggregate Output per Worker: Context and Institutional Background}
+
+Hungary entered the post-socialist transition early relative to its regional peers and was the only Eastern Bloc country to achieve political transformation through an evolutionary process, with the former communist party playing a central role. By 1995, the Bokros Package, a sharp fiscal consolidation, combined with a crawling-peg devaluation had been implemented in response to a balance-of-payments crisis. This stabilisation compressed real wages and restructured public expenditure, laying the groundwork for the productivity acceleration visible in both charts through the late 1990s and early 2000s.
+
+Hungary’s EU accession in May 2004, along with the period of candidacy and trade integration before it, brought substantial FDI inflows particularly into manufacturing and automotive supply chains. Multinational firms introduced both physical capital and organisational know-how that domestic firms struggled to replicate independently. While EU Structural Funds supported infrastructure investment, the labour market underwent a vital transformation as the previously centralized wage bargaining model shifted towards a decentralised one, easing some allocative rigidities. However, the benefits of integration were unevenly distributed: Budapest and the north-western corridor captured the majority of FDI and productivity gains, while several eastern and southern regions remained among the poorest in the EU.
+
+By the mid-2000s, the Medgyessy and Gyurcsány Governments faced growing fiscal imbalances, characterised by twin deficits, public debt expansion, and procyclical spending. In response to concerns over the deficit which had almost reached 9\% of GDP, the 2006 austerity package imposed tight contractionary measures and generated significant political turbulence. When the GFC struck in 2008–2009, Hungary was uniquely exposed due to its limited fiscal space and high levels of foreign-currency debt, particularly Swiss franc mortgages. A sharp drop in export demand led to the severe contraction, necessitating a conditional bailout from the IMF and EU. While the economy began to recover by 2010–2011, it remained fragile, relying heavily on inventory restocking and renewed German demand for Hungarian manufacturing exports.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/agg_output.png}
+  \label{fig:1}
+\end{figure}
+
+Figure 1
+
+The line chart (Figure 1) plots annual growth rates of both real value added and output per hour over the sample. The two series track closely with each other with labour productivity growth typically running slightly above value-added growth in the expansion years. The chart shows three distinct phases: i) we see low growth of 1–2 percentage points (pp) in 1996–1997 and a brief dip below zero in 1999, ii) a strong acceleration to 4–7 pp through 2000–2005 and iii) a post-peak deceleration from 2006 onwards culminating in a sharp contraction approaching -2 pp in 2009. We also note some tentative recovery in 2010–2011.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/market_v_total.png}
+  \label{fig:2}
+\end{figure}
+
+Figure 2
+
+The index chart (Figure 2) provides a level perspective on the same dynamics. Starting at 100 for both series in 1995, the market economy index rises to approximately 165 by 2007 (65\% gain over twelve years) before falling back sharply in 2009 and partially recovering. The total economy index follows a similar trajectory but is consistently below the market economy index throughout, and the gap between the two widens noticeably after EU accession in 2004. By 2007 the market economy index leads the total economy index by roughly 10-15 index points, a ‘wedge’ that reflects a drag from the non-market sector. Hungary’s non-market sector (public administration, education, and health) (\textit{NACE O-Q}) absorbs significant labour without facing competitive pressure to improve output per hour.
+
+It is also the case that aggregate productivity declines when low-productivity sectors expand their employment share relative to the market economy, even if market-sector efficiency is improving. The composition effect is clear in the widening post-2004 wedge between Hungary’s market and total economy indices. Our research hypothesizes that the EU Structural Fund inflows and fiscal expansion fueled public-sector hiring, even as FDI-driven manufacturing productivity surged, resulting in a growing dispersion between performance in the private sector and total economy. From a misallocation perspective, the labour and capital resources absorbed by the non-market sector generate marginal products that are institutionally suppressed rather than market-determined. This means that TFP estimates constructed from total-economy data, as we do here, may dilute the efficiency gains occurring in the market sector, an interesting finding in itself.
+
+\section{Decomposing Growth in Output per Worker}
+
+\subsection{Framework}
+
+Labour productivity growth is decomposed using the standard Cobb–Douglas framework with $\alpha$ = 1/3:
+
+$g_y = \frac{\alpha}{1-\alpha} \cdot g_{k/y} + g_h + g_A$
+
+The first term captures capital deepening via growth in the capital–output ratio scaled by $\alpha$/(1-$\alpha$). The second, $g_h$, reflects improvements in labour composition (human capital), proxied by the EUKLEMS LAB\_QI index. The third, g\_a, is the residual TFP. The analysis below runs two decompositions: a two-factor version (capital deepening vs. TFP + HC residual) covering the full 1995–2011 window, and a three-factor version separating human capital from TFP, which requires the LAB\_QI series.
+
+\subsection{Imputing Labour Composition Before 2008}
+
+In our exploratory analysis, we found that the plot produced in growth decomposition (\textit{LAB\_QI}) values exist only from 2008 onwards for all 14 broad sectors, while the entire 1995–2007 block is structurally missing.
+
+Attempting a three-factor decomposition over the full sample without addressing this would confine the analysis to just three years (2009–2011), limiting any inference about the growth acceleration of the early 2000s or the pre-crisis deceleration. For illustration Figure 3 lists the analysis of the growth decomposition over the 3 years of EUKLEMS data.
+
+To bridge this gap, we use XGBoost gradient-boosting backcasting. The model is trained on observed \textit{LAB\_QI} (2008+) and predicts the missing 1995--2007 values. We use 109 predictors with at least 80\% pre-2008 coverage; XGBoost handles missing values natively without median imputation. Hyperparameters are tuned via random search with 5-fold cross-validation and early stopping (see Appendix). The best configuration is max\_depth=5, eta=0.08, subsample=0.9, colsample\_bytree=0.75, min\_child\_weight=3. The 5-fold CV RMSE on observed data is approximately 7.7 index points. Predictions are clipped to the observed \textit{LAB\_QI} range.
+
+The per-sector leave-one-sector-out RMSE varies by sector: H (transport, 3.7), O-Q (public admin, education, health, 5.7), and L (real estate, 6.5) are the most reliably imputed, while J (ICT, 17.5), F (construction, 16.8), and M-N (professional services, 16.7) carry substantial uncertainty. The figure below confirms visually that the imputed trajectories are anchored to the observed 2008 level. Conclusions from the three-factor decomposition for high-RMSE sectors in the pre-2008 window should therefore be treated with caution. The imputation values do not affect the post-2008 period.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/labqi_imputed_vs_observed_full.png}
+  \label{fig:3}
+\end{figure}
+
+Figure 4
+
+\subsection{Capital and Human Capital Measures}
+
+Capital is measured using the quality-adjusted real capital stock (\textit{Kq\_GFCF}) from the capital accounts, which weights asset types by their relative efficiency rather than acquisition cost. Hours worked are derived for all persons engaged (employees plus self-employed) by multiplying employee average hours by the ratio of total employment to employee headcount. For human capital, the \textit{LAB\_QI} index captures workforce composition by education, age, and gender, weighted by relative wages.
+
+\subsection{Aggregate Two-Factor Decomposition (1996–2011)}
+
+The stacked bar chart in the figure below the visual aide of the stark aggregate dynamics. Capital deepening (in green) sits as a consistently low and relatively stable band at the top of the stacked bars throughout the sample, rarely exceeding 1–2 pp even at the peak of the investment cycle. The TFP + HC residual (orange) is significantly larger in every expansion year, reaching approximately 5.6 pp in 2005 out of a total LP growth of 7.3 pp.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/lp_decomposition_aggregate_3f_and_2f.png}
+  \label{fig:4}
+\end{figure}
+
+\begin{center}
+\input{../output/tables/year_tally_2f.tex}
+\end{center}
+
+The 2009 crisis marks a unique point in the data, as it is the only year where the TFP + HC (orange bar) falls below zero (-3.77 pp) while capital-deepening (green bar) remains positive (2.15 pp), resulting in an overall LP contraction of -1.62 pp. The spike in capital-deepening in 2009 was a mechanical result of the economic shock. Since capital adjusts slowly, the collapse in output and hours worked caused the capital-output ratio to rise sharply.
+
+The chart provides a complementary view: the cumulative TFP + HC line rises steeply through 2005–2006 and then partially reverses, while the cumulative capital-deepening line rises more steadily and moderately throughout. By 2011 the cumulative residual contribution substantially exceeds cumulative capital deepening, confirming that over the full cycle Hungary’s LP growth was efficiency-led rather than capital-led.
+
+\subsection{Aggregate Three-Factor Decomposition}
+
+
+The red-shaded region covers 1995–2007 to mark the imputed window. Within that shaded region, the blue HC bars are flat and small (roughly 0.63–0.83 pp per year) reflecting the how backcasting averages can pose flat results. The pink TFP bars absorb the large majority of the pre-crisis residual, ranging from approximately 0.17 pp to 4.85 pp (1996-2005). The non-shaded region above shows the three observed years where \textit{LAB\_QI} is directly measured. The most striking feature is the 2009 labour-composition (HC, blue) line falls to -3.53 pp, much larger than the pure TFP contribution of -0.24 pp. Capital deepening (green) is 2.15 pp as in the two-factor model. We can infer from the difference in these two graphs is what looked like a single large negative residual in the two-factor chart was actually a workforce-composition shock, not an efficiency collapse. In 2010 and 2011 the blue HC line rebounds strongly (+2.04 and +1.38 pp), the pink TFP line recovers modestly, and the green capital-deepening bar compresses.
+
+\begin{center}
+\input{../output/tables/year_tally_3f.tex}
+\end{center}
+
+Comparing the two decompositions also illuminates the pre-2008 interpretation. For years where \textit{LAB\_QI} is imputed, the flat blue HC contribution in the three-factor chart means that essentially all year-to-year variation in the pre-2008 two-factor residual is attributed to TFP. This is a consequence of the imputation method, not the data, which is why some caution is required when analysing results. What the three-factor chart does confirm is that the pre-crisis TFP contribution was large and sustained, consistent with the EU integration story, but that the envelope of total LP growth visible in both charts is entirely data-driven (not imputation driven).
+
+
+\section{Sectoral Decomposition of Output per Worker}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/sectoral_lp_decomposition_3f_and_2f.png}
+  \label{fig:7}
+\end{figure}
+
+**
+
+\subsection{Two-Factor Results by Sector}
+
+\begin{center}
+\input{../output/tables/sectoral_tally_2f.tex}
+\end{center}
+
+\subsection{Three-Factor Results by Sector (Imputed LAB\_QI, 1996–2011)}
+
+\begin{center}
+\input{../output/tables/sectoral_tally_3f.tex}
+\end{center}
+
+\subsection{Highest LP Growth}
+
+In the horizontal stacked bar chart, the bars are ordered from lowest (bottom, sector K) to highest (top). Mining and quarrying (B) sits at the very top with 9.99 pp average annual LP growth, but its bar is dominated by TFP (pink), with modest capital deepening and a slightly negative HC contribution reflecting workforce shrinkage. Agriculture (A) is second, also TFP-dominated. Information and communication (J) is third, and here the composition of the bar is qualitatively different: J is TFP-dominated (6.64 pp), with a negative HC contribution (-0.96 pp), so the two-factor residual (5.68 pp) understates pure TFP once human capital is separated. This contrast—TFP-led growth in B, A and J—is immediately visible in the relative widths of the pink and blue segments.
+
+Manufacturing (C) is the fourth highest at 5.13 pp. In the line chart (Cell 39), LP growth in manufacturing is volatile but persistently positive through 2007, with the sharpest decline occurring in 2009 (consistent with export-demand collapse) followed by a sharp recovery to above 10 pp in 2010–2011 as German supply chain demand rebounded. In the three-factor bar chart, manufacturing’s HC contribution is modestly positive (0.47 pp), indicating workforce upgrading on average during the FDI-driven investment boom.
+
+\subsection{Lowest LP Growth}
+
+Finance and insurance (K) is unambiguously the worst performer at -4.15 pp in both the two-factor and three-factor rankings. The time-series line chart (Cell 38) makes the pattern vivid: the sector oscillates between -35 pp and +10 pp in the late 1990s during post-socialist banking restructuring, then stabilises and grows positively through 2003, before entering persistent decline from 2003 onwards. The chart shows the sector’s LP growth is near zero or negative for most years from 2003 to 2011, with a sharp trough around -10 pp in 2009. In the heatmap (Cell 33), sector K is one of the most consistently dark-red (negative residual) columns in the post-2003 years, reinforcing the persistence of the underperformance rather than a single crisis-year event.
+
+In the sectoral three-factor bar chart, sector K’s bar is dominated by a large negative TFP segment (-5.34 pp), partially offset by a modest positive HC contribution (+0.94 pp). This means the finance sector’s declining workforce quality is not the explanation for its poor performance; the problem is organisational and technological efficiency. The heatmap further shows that accommodation and food services (I) and professional services (M-N) also display persistently dark-red columns, particularly post-2006, placing all three non-market-facing service sectors in the same poor-TFP cluster.
+
+\subsection{Highest and Lowest TFP Growth}
+
+Under the three-factor decomposition with imputed HC, the chart shows that the three largest pink (TFP) segments belong to mining (B, 5.96 pp), agriculture (A, 3.83 pp), and manufacturing (C, 2.08 pp). Notably, in the two-factor chart ICT (J) appears to have a large TFP + HC residual (5.68 pp), but once HC is separated in the three-factor chart, J's pure TFP is actually higher (6.64 pp) than its two-factor residual because HC contributes negatively (-0.96 pp), placing J above manufacturing in the TFP ranking. This visual shift between the two charts is one of the most informative comparisons available: it shows that ICT's headline performance understates its pure efficiency gains when the negative HC contribution is netted out.
+
+For the TFP losers, the heatmap is particularly useful. Finance (K) shows a near-continuous band of red from 2003 to 2011. Accommodation (I) turns red from around 2001 and stays there. Professional services (M-N) has a mixed pattern: the heatmap shows some blue (positive) years in the early 2000s but persistent red from 2005 onwards. This temporal dimension—visible in the heatmap but lost in the averaged bar charts—suggests that M-N’s negative TFP average is driven by the post-2005 deterioration rather than a uniformly poor performance.
+
+The faceted sector chart (Cell 27, both panels) further illustrates how conclusions can shift. In the 2-factor panel, construction (F) has a slightly negative TFP + HC residual (-0.41 pp), implying capital deepening explains more than its modest LP growth. In the 3-factor panel for 2009–2011, this balance changes: F shows a small positive TFP contribution alongside a negative HC contribution, consistent with the sector’s massive employment collapse during the crisis improving the quality of the remaining workforce while genuine efficiency remained marginal.
+
+\section{Labour Shares and Sector-Specific Capital Coefficients}
+
+\subsection{Computing the Labour Share}
+
+The bar chart (Figure 6) plots the implied $\alpha$\_s = 1 - labour share for each sector, with the dashed red line marking the assumed uniform $\alpha$ = 1/3. The most striking visual features are: real estate (L) whose bar extends far to the right past 0.85; agriculture (A) whose bar reaches approximately 0.71; and the public sector (O-Q) and transport (H) whose bars sit to the left of the 1/3 line at approximately 0.26 and 0.37 respectively. Most other sectors cluster between 0.4 and 0.55, reasonably close to the 1/3 benchmark. The chart thus immediately flags which sectors will be most affected by switching to sector-specific $\alpha$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/implied_capital_share_by_sector.png}
+  \label{fig:8}
+\end{figure}
+
+\begin{center}
+\input{../output/tables/lab_share_alpha.tex}
+\end{center}
+
+From our research, we note some potential data peculiarities that come from how data is constructed. Real estate (L) has an implied labour share of only 0.12, yielding $\alpha$\_s = 0.88. This is because real estate value added is dominated by creating a variable that looks at rents on owner-occupied dwellings, which are capital income by construction. Agriculture (A) at $\alpha$\_s = 0.71 is reflective both the capital-intensive nature of Hungarian farming post-consolidation and the potential role of land as a capital input, as well as the relatively lower wages of agricultural workers.
+
+\subsection{Does Moving to Sector-Specific \texorpdfstring{$\alpha_s$}{alpha\_s} Change Conclusions?}
+
+The notebook produces a direct comparison chart for this question: the stacked bar chart (Cell 51) can be read side by side with the fixed-$\alpha$ version (Cell 50). The sectors whose bars change most visibly between the two charts are precisely those flagged in the plot: agriculture (A), real estate (L), ICT (J), and public sector (O-Q). For the majority of sectors whose $\alpha$\_s sits between 0.4 and 0.55, the bar charts look nearly identical.
+
+\begin{center}
+\input{../output/tables/tfp_compare.tex}
+\end{center}
+
+The most consequential change visible in the two sector-specific $\alpha$ charts is for agriculture. In the chart, agriculture's pink TFP bar shrinks substantially (from 3.83 pp under fixed $\alpha$ to -3.87 pp under sector-specific $\alpha_s$). The total bar height is unchanged at 5.58 pp, so this is purely a reallocation between components, but it matters for interpretation: under the correct $\alpha$\_s, about one-third more of agriculture’s LP growth is attributed to capital accumulation and one-third less to efficiency, weakening the case that post-accession agricultural productivity was driven by technology adoption alone.
+
+For real estate (L), the visual shift in the bar chart is extreme. The pink TFP bar collapses under the sector-specific $\alpha$ (from 0.69 pp under fixed $\alpha$ to -4.87 pp under sector-specific $\alpha_s$), while the green capital-deepening bar expands significantly. This confirms the measurement interpretation: with $\alpha$\_s = 0.88, almost all of real estate’s value-added growth is attributed to capital services, leaving essentially no genuine efficiency residual. This is the economically correct result given how real estate value added is constructed.
+
+For finance (K), accommodation (I), and professional services (M-N), whose $\alpha$\_s values are close to 1/3, the two bar charts look essentially identical. The negative TFP story for these sectors is therefore robust to the choice of capital-share assumption. The time-series chart (Cell 38) confirms that finance’s underperformance is a persistent structural phenomenon rather than an artefact of parameter choice.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/tfp_alpha_comparison_3f_and_2f.png}
+  \label{fig:9}
+\end{figure}
+
+\section{Aggregating Growth from Sectoral Data}
+
+The implied aggregate is constructed using Törnqvist-weighted averages of sectoral LP growth rates, where the weight for each sector is the average of its current-year and lagged-year nominal value-added shares. This superlative index is consistent with the aggregation underlying the EUKLEMS reported series and accounts for changing sectoral composition over time.
+
+\subsection{Does the Sectoral Aggregation Match the Reported Aggregate?}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/report_v_agg.png}
+  \label{fig:10}
+\end{figure}
+
+**
+
+In the chart above(Figure 7), the purple solid line (aggregated from sectors) and the green dashed line (reported aggregate) are plotted together over 1996–2010. The two series move closely in parallel throughout, sharing the same cyclical shape: both show the late-1990s recovery, the 1999 dip, the strong 2000–2005 expansion, the post-2005 slowdown, and the 2009 collapse. They converge most closely around 2001–2002 and again around 2004–2005, where the two lines are nearly indistinguishable. However, the purple sector-aggregated line consistently sits slightly below the green reported line in most pre-crisis years, with the gap widest in the late 1990s (approximately 1.4 pp in 1997) and at the 2005 peak (approximately 0.7 pp).
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+
+Year & Reported Agg. LP (pp) & Sector-Aggregated LP (pp) & Reported TFP (pp) & Sectoral TFP (pp) \\
+
+\midrule
+
+1996 & 0.97 & 1.31 & 0.80 & 0.93 \\
+
+1997 & 1.44 & 0.42 & 1.37 & 0.54 \\
+
+1998 & 3.85 & 2.51 & 3.30 & 2.15 \\
+
+1999 & -0.27 & -0.46 & 0.09 & -0.41 \\
+
+2000 & 5.39 & 4.15 & 4.60 & 3.27 \\
+
+2001 & 6.17 & 5.37 & 4.91 & 4.08 \\
+
+2002 & 5.70 & 4.73 & 4.73 & 3.80 \\
+
+2003 & 4.04 & 2.45 & 3.52 & 2.12 \\
+
+2004 & 5.15 & 5.20 & 4.40 & 3.99 \\
+
+2005 & 7.31 & 6.61 & 5.63 & 4.72 \\
+
+2006 & 4.37 & 3.54 & 3.58 & 2.70 \\
+
+2007 & 2.59 & 2.96 & 1.23 & 1.09 \\
+
+2008 & 1.87 & 0.06 & 0.89 & n/a \\
+
+\bottomrule
+\end{tabular}
+\end{center}
+
+We reason 2 main causes for this discrepancy. First, Törnqvist aggregation of within-sector growth rates misses the between-sector reallocation component of aggregate productivity: when workers or capital shift from lower- to higher-productivity sectors, aggregate LP rises even if each sector’s own productivity is unchanged. This Baumol–Denison reallocation effect goes uncaptured by the sector sum and partly explains why the sector-aggregated line runs below the reported line. The gap is particularly prominent in 1997–2003, which was the most intense period of structural transformation following Hungary’s EU candidacy and early FDI waves, potentially when the gains from reallocation would be biggest.
+
+Second, the national accounts use chain-linked Fisher or Läspeyres price indices that differ from the implicit deflation embedded in the sector-aggregated calculation. During periods of high and variable inflation, different sectoral deflators can introduce non-trivial aggregation wedges. Third, the aggregate capital stock in EUKLEMS is constructed independently of the sectoral stocks using economy-wide perpetual inventory methods, so the capital deepening contributions cannot sum precisely across the two levels.
+
+Despite these differences, the chart confirms that Hungary’s aggregate productivity dynamics are primarily driven by within-sector efficiency gains. This generally close alignment indicate that during Hungary’s strongest growth years, within-sector productivity improvements rather than reallocation were the dominant force. The gaps in the late 1990s and at turning points (notably the 2008 year-end reading where the sector-aggregated series falls to nearly 0.06 pp versus the reported 1.87 pp) may be victim of measurement error or other structural changes.
+
+\section{Policy Changes and the Evolution of the Time Series}
+
+The chart below overlays the total LP growth line and its two-factor components against three vertical dotted event lines marking EU accession (2004), GFC onset (2008), and the Orban government (2010).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/growth_accounting_3f_and_2f_line.png}
+  \label{fig:11}
+\end{figure}
+
+The 1995 Bokros Package is the background condition for the entire sample. In the chart, LP growth starts low (0.97 pp in 1996, 1.44 pp in 1997) and the TFP + HC line is subdued. Both series briefly dip below zero in 1999, visible as the deepest trough before the main expansion. Capital deepening in the two-factor line chart is marginally negative in 1999, confirming that investment was depressed. This 1999 dip, though small, is a useful marker: it shows that the Bokros stabilisation did not fully insulate Hungary from external shocks.
+
+The most prominent feature of the line chart is the sustained high ground of the TFP + HC line between 2000 and 2005, rising from 4.6 pp to a sample peak of 5.63 pp in 2005. The chart makes clear that this expansion began four years before the EU accession dotted line. We note that the accession marker at 2004 falls in the middle of an already-elevated plateau rather than at the start of one. This is consistent with anticipatory FDI flows and standard adoption effects that pre-dated formal membership. The capital-deepening line rises in parallel but remains well below the TFP + HC line throughout, peaking at only 1.68 pp in 2005.
+
+As a visualization, the chart below shows that finance also contributed positively in this period, with LP growth reaching approximately 8–9 pp in 2001–2003 as bank consolidation and financial deepening produced genuine efficiency gains. However, the finance series’ reversal after 2003 is already visible in the time-series chart before the EU accession line. From our research this can be due to possible competitive pressures and balance-sheet problems that were already eroding measured value added per hour ahead of the crisis.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{output/figures/finance_sector_K_3f_decomposition.png}
+  \label{fig:12}
+\end{figure}
+
+In the chart, the post-2005 deceleration is visible as a stepwise decline in the TFP + HC orange line: from 5.63 pp in 2005 to 3.58 pp in 2006 and 1.23 pp in 2007. The 2006–2007 period corresponds directly to the Gyurcsány government’s austerity package, which followed the revelation of twin fiscal deficits and generated significant political outrage across the country. The capital-deepening green line holds up relatively better, remaining at 0.80 pp in 2006 and 1.37 pp in 2007, suggesting firms continued investment commitments even as efficiency gains faded.
+
+The three-factor decomposition (from the chart) reveals that in 2007 the pure TFP contribution (pink bar) is only 0.41 pp, the smallest value in the entire pre-crisis window. The imputed HC contribution (blue bar) is steady at around 0.81 pp. This means essentially all of the two-factor residual decline from 2006 to 2007 is attributable to TFP rather than workforce composition, consistent with the interpretation that the fiscal austerity package was directly compressing productive efficiency rather than simply affecting labour quality.
+
+The GFC onset marker in the chart falls at a point where the TFP + HC orange line has already declined significantly (0.89 pp in 2008), confirming that the productive economy was already weakening before the global shock struck. The chart shows 2008 as a transitional year: LP growth is still positive (1.87 pp) and capital deepening is elevated (0.98 pp), but the TFP + HC residual has essentially halved from its 2007 reading. In the two-factor line chart (Cell 36), the orange TFP + HC line falls to -3.77 pp—by far the lowest value in the sample while the green capital-deepening line simultaneously spikes to +2.15 pp.
+
+\subsection{Recovery and the Orban Government (2010–2011)}
+
+The Orban government marker in the chart comes at the start of the recovery phase. By 2010 the TFP + HC orange line has returned to positive territory (1.29 pp) and the capital-deepening line has compressed to near zero (0.19 pp). In the chart (Cell 40), the 2010 and 2011 points show the blue HC line recovering strongly to +2.04 and +1.38 pp respectively, while the pink TFP line remains modestly negative in 2010 (-0.75 pp) before turning positive in 2011 (+0.85 pp). The visual implication is that the early recovery is HC-led: firms re-hired selectively, improving the quality composition of the workforce, before genuine TFP improvements followed.
+
+The chart shows a partial finance recovery in 2010–2011, with LP growth turning marginally positive, though the longer-run trend in the sectoral three-factor chart still shows K with the most negative TFP contribution over 1996–2011. The heatmap confirms that the 2010–2011 columns shift from deep red back toward lighter colours across most sectors, with manufacturing showing strong recovery consistent with rebounding German supply-chain demand visible in the chart (Cell 39), which shows the sharpest LP growth of the entire sample period emerging in 2010–2011.
+
+\appendix
+\section{Hyperparameter Tuning for LAB\_QI Backcasting}
+\begin{center}
+\input{../output/tables/hyperparameter_top5.tex}
+\end{center}
+
+\end{document}
